@@ -3,7 +3,7 @@
 Cryptography Bill of Materials (CBOM) is an object model to describe cryptographic assets (short crypto-assets) and their dependencies.
 CBOM is an extension of the [CycloneDX](https://cyclonedx.org) standard for Software Bill of Materials (SBOM), with notions to model crypto assets. CycloneDX was originally designed for use in application security and supply chain component analysis and is the SBOM format most aligned with the CBOM use case.
 
-There is a need to discover, manage and report cryptography as the first step on the migration journey to quantum safe systems and applications. Cryptography is typically buried deep within components that are used to compose and build systems and applications. It makes sense to minimize this effort through alignment and resuse of concepts and components used to implement Software Supply Chain Security (SSCS).
+There is a need to discover, manage and report cryptography as the first step on the migration journey to quantum safe systems and applications. Cryptography is typically buried deep within components that are used to compose and build systems and applications. It makes sense to minimize this effort through alignment and reuse of concepts and components used to implement Software Supply Chain Security (SSCS).
 
 ## Contents
 
