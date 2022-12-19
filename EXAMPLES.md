@@ -40,7 +40,7 @@ A crypto algorithm is added in the `components` array of the BOM. The example be
                 "cryptoFunctions": ["keygen", "encrypt", "decrypt", "tag"]
             },
             "classicalSecurityLevel": 128,
-            "quantumSecurityLevel": 1
+            "nistQuantumSecurityLevel": 1
         }
       }
     ...
@@ -66,7 +66,7 @@ An example with the QSC Signature algorithm `Dilithium-5` is listed below. As re
                 "certificationLevel": "none",
                 "cryptoFunctions": ["keygen", "sign", "verify"]
             },
-            "quantumSecurityLevel": 5
+            "nistQuantumSecurityLevel": 5
         }
       }
     ...
