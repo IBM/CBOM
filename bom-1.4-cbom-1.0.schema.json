@@ -787,125 +787,128 @@
               "type": "string",
               "title": "OID",
               "description": "OID of crypto asset"
-            }
-          },
-          "confidenceLevels": {
-            "type": "object",
-            "title": "confidence levels",
-            "description": "confidence levels of the reported crypto properties",
-            "properties": {
-              "assetType": {
-                "$ref": "#/definitions/confidenceLevel",
-                "title": "assetType confidence level"
-              },
-              "primitive": {
-                "$ref": "#/definitions/confidenceLevel",
-                "title": "primitive confidence level"
-              },
-              "relatedCryptoMaterialType": {
-                "$ref": "#/definitions/confidenceLevel",
-                "title": "related crypto material confidence level"
-              },
-              "variant": {
-                "$ref": "#/definitions/confidenceLevel",
-                "title": "variant confidence level"
-              },
-              "mode": {
-                "$ref": "#/definitions/confidenceLevel",
-                "title": "mode of opreation confidence level"
-              },
-              "padding": {
-                "$ref": "#/definitions/confidenceLevel",
-                "title": "padding confidence level"
-              },
-              "cryptoFunctions": {
-                "$ref": "#/definitions/confidenceLevel",
-                "title": "related crypto material confidence level"
-              },
-              "subjectName": {
-                "$ref": "#/definitions/confidenceLevel",
-                "title": "subjectName confidence level"
-              },
-              "issuerName": {
-                "$ref": "#/definitions/confidenceLevel",
-                "title": "issuerName confidence level"
-              },
-              "notValidBefore": {
-                "$ref": "#/definitions/confidenceLevel",
-                "title": "notValidBefore confidence level"
-              },
-              "notValidAfter": {
-                "$ref": "#/definitions/confidenceLevel",
-                "title": "notValidAfter confidence level"
-              },
-              "certificateAlgorithm": {
-                "$ref": "#/definitions/confidenceLevel",
-                "title": "certificateAlgorithm confidence level"
-              },
-              "certificateSignatureAlgorithm": {
-                "$ref": "#/definitions/confidenceLevel",
-                "title": "certificateSignatureAlgorithm confidence level"
-              },
-              "certificateFormat": {
-                "$ref": "#/definitions/confidenceLevel",
-                "title": "certificateFormat confidence level"
-              },
-              "certificateExtensions": {
-                "$ref": "#/definitions/confidenceLevel",
-                "title": "certificateExtensions confidence level"
-              },
-              "tlsCipherSuites": {
-                "$ref": "#/definitions/confidenceLevel",
-                "title": "tlsCipherSuites confidence level"
-              },
-              "ikev2TransformTypes": {
-                "$ref": "#/definitions/confidenceLevel",
-                "title": "ikev2TransformTypes confidence level"
-              }
-            }
-          },
-          "scanner": {
-            "type": "string",
-            "title": "scanner",
-            "description": "scanner name that detected the crypto-asset"
-          },
-          "detectionContext": {
-            "type": "array",
-            "additionalItems": false,
-            "items": {
+            },
+            "confidenceLevels": {
               "type": "object",
-              "title": "detection context",
-              "additionalProperties": false,
+              "additionalItems": false,
+              "title": "confidence levels",
+              "description": "confidence levels of the reported crypto properties",
               "properties": {
-                "filePath": {
-                  "type": "string",
-                  "title": "filePath",
-                  "description": "File path of the detected crypto asset"
+                "assetType": {
+                  "$ref": "#/definitions/confidenceLevel",
+                  "title": "assetType confidence level"
                 },
-                "lineNumbers": {
-                  "type": "array",
-                  "title": "lineNumbers",
-                  "description": "Line numbers of the detected crypto asset"
+                "primitive": {
+                  "$ref": "#/definitions/confidenceLevel",
+                  "title": "primitive confidence level"
                 },
-                "offsets": {
-                  "type": "array",
-                  "title": "offsets",
-                  "description": "Offsets of the detected crypto asset"
+                "relatedCryptoMaterialType": {
+                  "$ref": "#/definitions/confidenceLevel",
+                  "title": "related crypto material confidence level"
                 },
-                "symbols": {
-                  "type": "array",
-                  "title": "symbols",
-                  "description": "symbol names detected for the crypto asset"
+                "variant": {
+                  "$ref": "#/definitions/confidenceLevel",
+                  "title": "variant confidence level"
                 },
-                "keywords": {
-                  "type": "array",
-                  "title": "keywords",
-                  "description": "keywords detected for the crypto asset"
+                "mode": {
+                  "$ref": "#/definitions/confidenceLevel",
+                  "title": "mode of opreation confidence level"
                 },
-                "additionalContext": {
-                  "type": "string",
-                  "title": "additionalContext",
-                  "description": "additional context of the detected crypto asset (e.g. code snippet)"
+                "padding": {
+                  "$ref": "#/definitions/confidenceLevel",
+                  "title": "padding confidence level"
+                },
+                "cryptoFunctions": {
+                  "$ref": "#/definitions/confidenceLevel",
+                  "title": "related crypto material confidence level"
+                },
+                "subjectName": {
+                  "$ref": "#/definitions/confidenceLevel",
+                  "title": "subjectName confidence level"
+                },
+                "issuerName": {
+                  "$ref": "#/definitions/confidenceLevel",
+                  "title": "issuerName confidence level"
+                },
+                "notValidBefore": {
+                  "$ref": "#/definitions/confidenceLevel",
+                  "title": "notValidBefore confidence level"
+                },
+                "notValidAfter": {
+                  "$ref": "#/definitions/confidenceLevel",
+                  "title": "notValidAfter confidence level"
+                },
+                "certificateAlgorithm": {
+                  "$ref": "#/definitions/confidenceLevel",
+                  "title": "certificateAlgorithm confidence level"
+                },
+                "certificateSignatureAlgorithm": {
+                  "$ref": "#/definitions/confidenceLevel",
+                  "title": "certificateSignatureAlgorithm confidence level"
+                },
+                "certificateFormat": {
+                  "$ref": "#/definitions/confidenceLevel",
+                  "title": "certificateFormat confidence level"
+                },
+                "certificateExtensions": {
+                  "$ref": "#/definitions/confidenceLevel",
+                  "title": "certificateExtensions confidence level"
+                },
+                "tlsCipherSuites": {
+                  "$ref": "#/definitions/confidenceLevel",
+                  "title": "tlsCipherSuites confidence level"
+                },
+                "ikev2TransformTypes": {
+                  "$ref": "#/definitions/confidenceLevel",
+                  "title": "ikev2TransformTypes confidence level"
+                }
+              }
+            },
+            "scanner": {
+              "type": "string",
+              "title": "scanner",
+              "description": "scanner name that detected the crypto-asset"
+            },
+            "detectionContext": {
+              "type": "array",
+              "additionalItems": false,
+              "title": "detection context",
+              "description": "Defines additional context metadata related to the detected crypto asset",
+              "items": {
+                "type": "object",
+                "title": "detection context",
+                "additionalProperties": false,
+                "properties": {
+                  "filePath": {
+                    "type": "string",
+                    "title": "filePath",
+                    "description": "File path of the detected crypto asset"
+                  },
+                  "lineNumbers": {
+                    "type": "array",
+                    "title": "lineNumbers",
+                    "description": "Line numbers of the detected crypto asset"
+                  },
+                  "offsets": {
+                    "type": "array",
+                    "title": "offsets",
+                    "description": "Offsets of the detected crypto asset"
+                  },
+                  "symbols": {
+                    "type": "array",
+                    "title": "symbols",
+                    "description": "symbol names detected for the crypto asset"
+                  },
+                  "keywords": {
+                    "type": "array",
+                    "title": "keywords",
+                    "description": "keywords detected for the crypto asset"
+                  },
+                  "additionalContext": {
+                    "type": "string",
+                    "title": "additionalContext",
+                    "description": "additional context of the detected crypto asset (e.g. code snippet)"
+                  }
                 }
               }
             }
