@@ -148,8 +148,8 @@ A crypto algorithm is added in the `components` array of the BOM. The example be
             "certificateProperties": {
                 "subjectName": "C=US, ST=California, L=San Francisco, O=Wikimedia Foundation, Inc., CN=*.wikipedia.org",
                 "issuerName": "C=BE, O=GlobalSign nv-sa, CN=GlobalSign Organization Validation CA - SHA256 - G2",
-                "notValidBefore": "Nov 21 08:00:00 2016 GMT",
-                "notValidAfter": "Nov 22 07:59:59 2017 GMT",
+                "notValidBefore": "2016-11-21T08:00:00Z",
+                "notValidAfter": "2017-11-22T07:59:59Z",
                 "certificateAlgorithm": "prime256v1",
                 "certificateSignatureAlgorithm": "sha256WithRSAEncryption",
                 "certificateFormat": "X.509"
