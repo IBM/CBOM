@@ -745,28 +745,27 @@
                   "description": "the TLS cipher suites supported, with naming convention according to IANA https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#tls-parameters-4"
                 },
                 "ikev2TransformTypes": {
-                  "type": "array",
+                  "type": "object",
                   "title": "IKEv2 transform types supported",
                   "description": "the IKEv2 transform types supported (types 1-4), according to RFC5996, section 3.3.2",
-                  "prefixItems": [
-                    {
+                  "properties": {
+                    "transformType1": {
                       "type": "array",
                       "title": "Transform Type 1: encryption algorithms"
                     },
-                    {
+                    "transformType2": {
                       "type": "array",
                       "title": "Transform Type 2: pseudorandom functions"
                     },
-                    {
+                    "transformType3": {
                       "type": "array",
                       "title": "Transform Type 3: integrity algorithms"
                     },
-                    {
+                    "transformType4": {
                       "type": "array",
                       "title": "Transform Type 4: DH groups"
                     }
-                  ],
-                  "items": false
+                  }
                 }
               }
             },
