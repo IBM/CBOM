@@ -133,6 +133,7 @@
                         "title": "padding",
                         "description": "The padding for the crypto algorithm ",
                         "enum": [
+                            "pkcs5",
                             "pkcs7",
                             "pkcs1v15",
                             "oaep",
