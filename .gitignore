@@ -2,3 +2,5 @@
 
 # directories
 .test/
+
+.DS_Store
