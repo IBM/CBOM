@@ -17,6 +17,7 @@
                 "enum": [
                     "algorithm",
                     "certificate",
+                    "key",
                     "protocol",
                     "relatedCryptoMaterial"
                 ]
