@@ -164,6 +164,19 @@
                                 "unknown"
                             ]
                         }
+                    },
+                    "classicalSecurityLevel": {
+                        "type": "integer",
+                        "title": "classical security level",
+                        "description": "classical security level",
+                        "minimum": 0
+                    },
+                    "nistQuantumSecurityLevel": {
+                        "type": "integer",
+                        "title": "NIST security strength category",
+                        "description": "NIST security strength category as defined in https://csrc.nist.gov/projects/post-quantum-cryptography/post-quantum-cryptography-standardization/evaluation-criteria/security-(evaluation-criteria), or 0 if none of the categories are met",
+                        "minimum": 0,
+                        "maximum": 6
                     }
                 }
             },
@@ -331,19 +344,6 @@
                         }
                     }
                 }
-            },
-            "classicalSecurityLevel": {
-                "type": "integer",
-                "title": "classical security level",
-                "description": "classical security level",
-                "minimum": 0
-            },
-            "nistQuantumSecurityLevel": {
-                "type": "integer",
-                "title": "NIST security strength category",
-                "description": "NIST security strength category as defined in https://csrc.nist.gov/projects/post-quantum-cryptography/post-quantum-cryptography-standardization/evaluation-criteria/security-(evaluation-criteria), or 0 if none of the categories are met",
-                "minimum": 0,
-                "maximum": 6
             },
             "oid": {
                 "type": "string",
