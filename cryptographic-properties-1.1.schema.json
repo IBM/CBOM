@@ -17,8 +17,8 @@
                 "enum": [
                     "algorithm",
                     "certificate",
-                    "relatedCryptoMaterial",
-                    "protocol"
+                    "protocol",
+                    "relatedCryptoMaterial"
                 ]
             },
             "algorithmProperties": {
@@ -52,6 +52,11 @@
                         "type": "string",
                         "title": "variant",
                         "description": "The variant for the crypto algorithm"
+                    },
+                    "curve": {
+                        "type": "string",
+                        "title": "elliptic curve",
+                        "description": "If applicable, the curve of the crypto algorithm"
                     },
                     "implementationLevel": {
                         "type": "string",
@@ -320,7 +325,8 @@
                         "title": "protocol name",
                         "description": "The common name of the protocol",
                         "examples": [
-                            "TLSv1.3", "SSH-1.99"
+                            "TLSv1.3",
+                            "SSH-1.99"
                         ]
                     },
                     "version": {
@@ -333,10 +339,15 @@
                             "1.99"
                         ]
                     },
-                    "tlsCipherSuites": {
+                    "cipherSuites": {
                         "type": "array",
-                        "title": "TLS cipher suites supported",
-                        "description": "the TLS cipher suites supported, with naming convention according to IANA https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#tls-parameters-4"
+                        "title": "Algorithms related to the protocol",
+                        "description": "A list of algorithms related to the protocol",
+                        "additionalItems": false,
+                        "items": {
+                            "$ref": "#/definitions/cipherSuite",
+                            "title": "Cipher suite"
+                        }
                     },
                     "ikev2TransformTypes": {
                         "type": "object",
@@ -499,6 +510,49 @@
             "title": "ConfidenceLevel",
             "description": "The ConfidenceLevel related to a property",
             "type": "number"
+        },
+        "cipherSuite": {
+            "type": "object",
+            "title": "Cipher suite",
+            "description": "Object representing a cipher suite",
+            "additionalItems": false,
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "title": "Common name",
+                    "description": "A common name for the cipher suite",
+                    "examples": [
+                        "TLS_DHE_RSA_WITH_AES_128_CCM"
+                    ]
+                },
+                "algorithms": {
+                    "type": "array",
+                    "title": "Related algorithms",
+                    "description": "List of algorithms related to the cipher suite",
+                    "additionalItems": false,
+                    "items": {
+                        "algorithmRef": {
+                            "$ref": "#/definitions/algorithmRef",
+                            "title": "Algorithm reference"
+                        }
+                    }
+                },
+                "identifiers": {
+                    "type": "array",
+                    "title": "Cipher suite identifiers",
+                    "description": "A list of common identifiers for the cipher suite",
+                    "additionalItems": false,
+                    "items": {
+                        "type": "string",
+                        "title": "identifier",
+                        "description": "Cipher suite identifier",
+                        "examples": [
+                            "0xC0",
+                            "0x9E"
+                        ]
+                    }
+                }
+            }
         }
     }
 }
