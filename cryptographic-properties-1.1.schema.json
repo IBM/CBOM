@@ -278,9 +278,15 @@
                             "password",
                             "credential",
                             "token",
+                            "group",
                             "other",
                             "unknown"
                         ]
+                    },
+                    "value": {
+                        "type": "string",
+                        "title": "Value assosiated to the crypto material",
+                        "description": "The assosiated value of the crypto material"
                     },
                     "size": {
                         "type": "integer",
@@ -354,21 +360,25 @@
                         "title": "IKEv2 transform types supported",
                         "description": "the IKEv2 transform types supported (types 1-4), according to RFC5996, section 3.3.2",
                         "properties": {
-                            "transformType1": {
-                                "type": "array",
+                            "encr": {
+                                "$ref": "#/definitions/cryptoRefArray",
                                 "title": "Transform Type 1: encryption algorithms"
                             },
-                            "transformType2": {
-                                "type": "array",
+                            "prf": {
+                                "$ref": "#/definitions/cryptoRefArray",
                                 "title": "Transform Type 2: pseudorandom functions"
                             },
-                            "transformType3": {
-                                "type": "array",
+                            "integ": {
+                                "$ref": "#/definitions/cryptoRefArray",
                                 "title": "Transform Type 3: integrity algorithms"
                             },
-                            "transformType4": {
-                                "type": "array",
+                            "dh": {
+                                "$ref": "#/definitions/cryptoRefArray",
                                 "title": "Transform Type 4: DH groups"
+                            },
+                            "esn": {
+                                "type": "boolean",
+                                "title": "Extended Sequence Number is used"
                             }
                         }
                     }
@@ -531,10 +541,9 @@
                     "description": "List of algorithms related to the cipher suite",
                     "additionalItems": false,
                     "items": {
-                        "algorithmRef": {
-                            "$ref": "#/definitions/algorithmRef",
-                            "title": "Algorithm reference"
-                        }
+                        "$ref": "#/definitions/cryptoRef",
+                        "title": "Algorithm reference",
+                        "description": "Bom-ref to algorithm crypto asset"
                     }
                 },
                 "identifiers": {
@@ -552,6 +561,13 @@
                         ]
                     }
                 }
+            }
+        },
+        "cryptoRefArray" : {
+            "type": "array",
+            "additionalItems": false,
+            "items": {
+                "$ref": "#/definitions/cryptoRef"
             }
         }
     }
