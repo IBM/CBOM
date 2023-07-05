@@ -453,9 +453,8 @@
                         "title": "Crypto asset size (in bits)"
                     },
                     "algorithmRef": {
-                        "type": "string",
-                        "title": "key algorithm reference",
-                        "description": "Reference (bom-ref) to the algorithm used to generate the key"
+                        "$ref": "#/definitions/algorithmRef",
+                        "title": "Algorithm reference"
                     },
                     "securedBy": {
                         "$ref": "#/definitions/securedBy",
