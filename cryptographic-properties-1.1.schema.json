@@ -347,8 +347,8 @@
                     },
                     "cipherSuites": {
                         "type": "array",
-                        "title": "Algorithms related to the protocol",
-                        "description": "A list of algorithms related to the protocol",
+                        "title": "Cipher suites related to the protocol",
+                        "description": "A list of cipher suites related to the protocol",
                         "additionalItems": false,
                         "items": {
                             "$ref": "#/definitions/cipherSuite",
