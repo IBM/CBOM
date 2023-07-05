@@ -232,7 +232,7 @@
                             "CVC"
                         ]
                     },
-                    "certificateExtensions": {
+                    "certificateExtension": {
                         "type": "string",
                         "title": "Certificate extensions",
                         "description": "The certificate extensions of the crypto certificate",
@@ -430,9 +430,9 @@
                         "$ref": "#/definitions/confidenceLevel",
                         "title": "certificateFormat confidence level"
                     },
-                    "certificateExtensions": {
+                    "certificateExtension": {
                         "$ref": "#/definitions/confidenceLevel",
-                        "title": "certificateExtensions confidence level"
+                        "title": "certificateExtension confidence level"
                     },
                     "tlsCipherSuites": {
                         "$ref": "#/definitions/confidenceLevel",
