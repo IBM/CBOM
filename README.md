@@ -14,7 +14,7 @@ There is a need to discover, manage and report cryptography as the first step on
       - [1. Modelling crypto assets](#1-modelling-crypto-assets)
       - [2. Capturing crypto asset properties](#2-capturing-crypto-asset-properties)
       - [3. Capturing crypto asset dependencies](#3-capturing-crypto-asset-dependencies)
-      - [4.  Applicability to various software components](#4--applicability-to-various-software-components)
+      - [4. Applicability to various software components](#4-applicability-to-various-software-components)
       - [5. High compatibility to CycloneDX SBOM and related tooling](#5-high-compatibility-to-cyclonedx-sbom-and-related-tooling)
       - [6. Enable automatic reasoning](#6-enable-automatic-reasoning)
   - [CBOM Schema](#cbom-schema)
@@ -24,11 +24,7 @@ There is a need to discover, manage and report cryptography as the first step on
       - [Certificate](#certificate)
       - [RelatedCryptoMaterial](#relatedcryptomaterial)
       - [Protocol](#protocol)
-      - [Classical Security Level](#classical-security-level)
-      - [Quantum Security Level](#quantum-security-level)
       - [OID](#oid)
-      - [Confidence levels](#confidence-levels)
-      - [Scanner](#scanner)
       - [Detection Context](#detection-context)
       - [General considerations](#general-considerations)
     - [Dependencies](#dependencies)
@@ -71,7 +67,7 @@ Crypto assets have properties that uniquely define them and that make them actio
 
 To understand the impact of a crypto asset, it is important to capture its dependencies. Crypto libraries 'implement' certain algorithms and protocols, but their implementation alone does not reflect their usage by applications. CBOM therefore differentiates between 'implements' and 'uses' dependencies. It is possible to model algorithms or protocols that use other algorithms (e.g. TLS 1.3 uses ECDH/secp256r1), libraries that implement algorithms and applications that 'use' algorithms from a library.
 
-#### 4.  Applicability to various software components
+#### 4. Applicability to various software components
 
 CycloneDX supports various software components: applications, frameworks, libraries, containers, operating-systems, devices, firmware and files. CBOM allows to use these components and represent their dependency to crypto assets.
 
@@ -175,76 +171,56 @@ Describes a cryptographic certificate. If `certificate` is selected, the object 
 
 Describes related cryptographic material. The `relatedCryptoMaterial` assetType corresponds to cryptographic material inventoried in the CBOM. If `relatedCryptoMaterial` is selected, the object `relatedCryptoMaterialProperties` shall be used to define further properties:
 
-- `relatedCryptoMaterialType`: an enum defining the type of cryptographic material (e.g. `privateKey`, `publicKey`).
-- `size`: size in bits of the related crypto material, if known or applicable.
-- `format`: format of the related crypto material (e.g. P8, PEM, DER), if known or applicable.
-- `secured`: indicates if the related crypto material is secured or not, if known or applicable.
+| Property        | Description                                                          |
+|-----------------|----------------------------------------------------------------------|
+|`type`| An enum defining the type of cryptographic material (e.g. `signature`, `tag`, `token`).|
+|`size`| Size in bits of the related crypto material.|
+|`format`| Format of the related crypto material (e.g. `P8`, `PEM`, `DER`).|
+|`secured`| Indicates if the related crypto material is secured or not.|
 
 #### Protocol
 
 Describes cryptographic protocols. If `protocol` is selected, the object `protocolProperties` shall be used to define further properties:
 
-- `tlsCipherSuites`: for TLS protocols - defines the TLS cipher suites supported by a TLS protocol instantiation.
-- `ikev2TransformTypes`: for IPsec protocols - defines the IKEv2 transform types supported by the IPsec instantiation. This property is defined in an array containing entries for (1) transform type 1, (2) transform type 2, (3) transform type 3, and (4) transform type 4.
-
-#### Classical Security Level
-
-Defines the classical security level in bits in property `classicalSecurityLevel`.
-
-#### Quantum Security Level
-
-The property `nistQuantumSecurityLevel` defines the quantum security level of the crypto asset. The security level corresponds to the [security strength categories](https://csrc.nist.gov/projects/post-quantum-cryptography/post-quantum-cryptography-standardization/evaluation-criteria/security-(evaluation-criteria)) defined by NIST for the PQC standardization process. The value is an integer ranging from 0 to 6, while 0 is chosen if none of the NIST categories are met.
+| Property        | Description                                                          |
+|-----------------|----------------------------------------------------------------------|
+|`type` | An enum defining the type of a protocol (e.g. `tls`, `ssh`, `ipsec`). |
+|`name` | Common name of the protocol (e.g. `TLSv1.3`, `SSH-1.99`). |
+|`version`| The version of the protocol (e.g. `1.0`, `1.3`)|
+|`tlsCipherSuites`| For TLS protocols - defines the TLS cipher suites supported by a TLS protocol instantiation. |
+|`ikev2TransformTypes`| For IPsec protocols - defines the IKEv2 transform types supported by the IPsec instantiation. This property is defined in an array containing entries for (1) transform type 1, (2) transform type 2, (3) transform type 3, and (4) transform type 4.|
 
 #### OID
 
 Defines the Object Identifier (OID) of the crypto asset in property `oid`, if available and applicable.
 
-#### Confidence levels
-
-If probabilistic methods are used to generate a CBOM with crypto assets, the properties can be assigned with a corresponding confidence level (a number from 0.0 to 1.0). The property is named `confidenceLevels` and contains the following object values:
-
-- `assetType`
-- `primitive`
-- `relatedCryptoMaterialType`
-- `variant`
-- `mode`
-- `padding`
-- `cryptoFunctions`
-- `subjectName`
-- `issuerName`
-- `notValidBefore`
-- `notValidAfter`
-- `certificateAlgorithm`
-- `certificateSignatureAlgorithm`
-- `certificateFormat`
-- `certificateExtensions`
-- `tlsCipherSuites`
-- `ikev2TransformTypes`
-
-#### Scanner
-
-Defines the name of the identification method (scanner) used to generate the CBOM. The property is named `scanner`.
+Examples:
+- `1.2.840.113549.1.1.1` - RSA encryption
+- `2.16.840.1.101.3.4.1.5` - AES128-WRAP
+- `2.16.840.1.101.3.4.1.46` - AES256-GCM
 
 #### Detection Context
 
 Defines additional context metadata related to the detected crypto asset. The object is named `detectionContext` and it is an array of objects with the following properties (multiple entries in the array may be used if the crypto asset is detected in multiple files):
 
-- `filePath`: file path of the detected crypto asset, if known or applicable.
-- `lineNumbers`: line numbers (array) of the detected crypto asset, if known or applicable.
-- `offsets`: offsets (array) in which the crypto asset have been detected, if known or applicable.
-- `symbols`: symbol names (array) of the detected crypto asset, if known or applicable.
-- `keywords`: keywords (array) used to detect the crypto asset, if known or applicable.
-- `additionalContext`: additional context of the detected crypto asset (e.g. code snippet).
+| Property        | Description                                                          |
+|-----------------|----------------------------------------------------------------------|
+|`filePath`| File path of the detected crypto asset. |
+|`lineNumbers`| Line numbers (array) of the detected crypto asset.|
+|`offsets`| Offsets (array) in which the crypto asset have been detected. |
+|`symbols`| Symbol names (array) of the detected crypto asset.|
+|`keywords`| Keywords (array) used to detect the crypto asset. |
+|`additionalContext`| additional context of the detected crypto asset (e.g. code snippet).|
 
 #### General considerations
 
-Some of the CBOM property enums allow to specify "other" and "unknown". The value "other" refers to types not defined by the enum (e.g. a new cryptographic `primitive`). The value "unknown" refers to entries not known to the tool that built the CBOM (e.g. if the `implementationPlatform` is unknown).
+Some of the CBOM property enums allow to specify `other` and `unknown`. The value `other` refers to types not defined by the enum (e.g. a new cryptographic `primitive`). The value `unknown` refers to entries not known to the tool that built the CBOM (e.g. if the `implementationPlatform` is unknown).
 
 ### Dependencies
 
 CBOM uses the CycloneDX `dependency` object and extends it with a property `dependencyType`:
 
-```
+```json
 "dependencyType": {
     "type": "string",
     "enum": [
@@ -257,8 +233,10 @@ CBOM uses the CycloneDX `dependency` object and extends it with a property `depe
 
 The two dependency types are:
 
-- `implements`: refers to crypto assets implemented, or statically available in a component. Examples are the algorithms provided by crypto libraries. A crypto asset 'implemented' by a component does not imply that it is in use.
-- `uses`: refers to crypto assets in use, or being referenced by other components. The referencing can be done by explicit function calls or by configuration at run time. Usage may change over time, so CBOMs always represent a snapshot at a given point in time.
+| Property        | Description                                                          |
+|-----------------|----------------------------------------------------------------------|
+|`implements`| Refers to crypto assets implemented, or statically available in a component. Examples are the algorithms provided by crypto libraries. A crypto asset 'implemented' by a component does not imply that it is in use. |
+|`uses`| refers to crypto assets in use, or being referenced by other components. The referencing can be done by explicit function calls or by configuration at run time. Usage may change over time, so CBOMs always represent a snapshot at a given point in time.|
 
 A component can have a dependencies of both types `implements` and `uses`. A crypto asset A is considered as 'used' by component C if there is a `used` dependency path from C to A.
 
@@ -270,8 +248,8 @@ The file [EXAMPLES.md](EXAMPLES.md) contains examples for creating CBOMs.
 
 To validate CBOMs against the schema with `ajv`:
 
-```
-$ ajv validate --spec=draft7 --validate-formats=false -r spdx.schema.json -r jsf-0.82.schema.json --strict=false -s bom-1.4-cbom-1.0.schema.json -d <cbom.json>
+```shell
+$ ajv validate --spec=draft7 --validate-formats=false -r spdx.schema.json -r jsf-0.82.schema.json -r cryptographic-properties-1.1.schema.json --strict=false -s bom-1.5-cbom-1.1.schema.json -d <cbom.json>
 <cbom.json> valid
 ```
 
