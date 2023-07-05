@@ -206,25 +206,43 @@
                         "title": "Not Valid After",
                         "description": "The date and time according to ISO-8601 standard from which the certificate is not valid anymore"
                     },
-                    "certificateAlgorithm": {
-                        "type": "string",
-                        "title": "certificateAlgorithm",
-                        "description": "The algorithm (PK algorithm) used by the crypto certificate"
+                    "signatureAlgorithm": {
+                        "$ref": "#/definitions/cryptoRef",
+                        "title": "Algorithm reference",
+                        "description": "Bom-ref to signature algorithm used by the certificate"
                     },
-                    "certificateSignatureAlgorithm": {
-                        "type": "string",
-                        "title": "certificateSignatureAlgorithm",
-                        "description": "The signature algorithm used by the crypto certificate"
+                    "subjectPublicKeyAlgorithm": {
+                        "$ref": "#/definitions/cryptoRef",
+                        "title": "Algorithm reference",
+                        "description": "Bom-ref to the algorithm used to generate the public key for the subject"
+                    },
+                    "subjectPublicKey": {
+                        "$ref": "#/definitions/cryptoRef",
+                        "title": "Key reference",
+                        "description": "Bom-ref to the public key of the subject"
                     },
                     "certificateFormat": {
                         "type": "string",
-                        "title": "certificateFormat",
-                        "description": "The format (e.g. X.509, PEM, DER, CVC...) of the crypto certificate"
+                        "title": "Certificate format",
+                        "description": "The format of the certificate",
+                        "examples": [
+                            "X.509",
+                            "PEM",
+                            "DER",
+                            "CVC"
+                        ]
                     },
                     "certificateExtensions": {
                         "type": "string",
-                        "title": "certificateExtensions",
-                        "description": "The certificate extensions of the crypto certificate"
+                        "title": "Certificate extensions",
+                        "description": "The certificate extensions of the crypto certificate",
+                        "examples": [
+                            "crt",
+                            "pem",
+                            "cer",
+                            "der",
+                            "p12"
+                        ]
                     }
                 }
             },
@@ -472,6 +490,11 @@
         }
     },
     "definitions": {
+        "cryptoRef": {
+            "type": "string",
+            "title": "Reference to a crypto asset",
+            "description": "Reference (bom-ref) to the crypto asset used in this context"
+        },
         "confidenceLevel": {
             "title": "ConfidenceLevel",
             "description": "The ConfidenceLevel related to a property",
