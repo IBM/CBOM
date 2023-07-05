@@ -3816,7 +3816,7 @@
         "title": "Type to characterize a dependency"
       },
       "cryptoProperties": {
-        "$ref": "cryptographic-properties-1.0.schema.json#/cryptoProperties",
+        "$ref": "cryptographic-properties-1.1.schema.json#/cryptoProperties",
         "title": "Crypto Properties",
         "description": "Properties for Crypto Assets"
       }
