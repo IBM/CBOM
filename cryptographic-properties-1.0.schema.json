@@ -269,6 +269,39 @@
                 "description": "Properties for crypto assets of asset type 'protocol'",
                 "additionalProperties": false,
                 "properties": {
+                    "type": {
+                        "type": "string",
+                        "title": "type",
+                        "description": "The concrete protocol type",
+                        "enum": [
+                            "tls",
+                            "ssh",
+                            "ipsec",
+                            "ike",
+                            "sstp",
+                            "wpa",
+                            "other",
+                            "unknown"
+                        ]
+                    },
+                    "name": {
+                        "type": "string",
+                        "title": "protocol name",
+                        "description": "The common name of the protocol",
+                        "examples": [
+                            "TLSv1.3", "SSH-1.99"
+                        ]
+                    },
+                    "version": {
+                        "type": "string",
+                        "title": "protocol version",
+                        "description": "The version of the protocol",
+                        "examples": [
+                            "1.0",
+                            "1.2",
+                            "1.99"
+                        ]
+                    },
                     "tlsCipherSuites": {
                         "type": "array",
                         "title": "TLS cipher suites supported",
