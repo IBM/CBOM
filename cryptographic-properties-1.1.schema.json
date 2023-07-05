@@ -454,7 +454,7 @@
                         "title": "Crypto asset size (in bits)"
                     },
                     "algorithmRef": {
-                        "$ref": "#/definitions/algorithmRef",
+                        "$ref": "#/definitions/cryptoRef",
                         "title": "Algorithm reference"
                     },
                     "securedBy": {
@@ -821,7 +821,7 @@
                     ]
                 },
                 "algorithmRef": {
-                    "$ref": "#/definitions/algorithmRef",
+                    "$ref": "#/definitions/cryptoRef",
                     "title": "Algorithm reference"
                 }
             }
