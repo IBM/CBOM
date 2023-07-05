@@ -455,7 +455,8 @@
                     },
                     "algorithmRef": {
                         "$ref": "#/definitions/cryptoRef",
-                        "title": "Algorithm reference"
+                        "title": "Algorithm reference",
+                        "description": "Bom-ref to algorithm used to generate the key"
                     },
                     "securedBy": {
                         "$ref": "#/definitions/securedBy",
