@@ -289,7 +289,7 @@
                         "title": "protocol name",
                         "description": "The common name of the protocol",
                         "examples": [
-                            "TLSv1.3"
+                            "TLSv1.3", "SSH-1.99"
                         ]
                     },
                     "version": {
