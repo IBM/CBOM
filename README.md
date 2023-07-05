@@ -11,6 +11,12 @@ There is a need to discover, manage and report cryptography as the first step on
   - [Contents](#contents)
   - [Background: Software Bill of Materials](#background-software-bill-of-materials)
   - [CBOM Design](#cbom-design)
+      - [1. Modelling crypto assets](#1-modelling-crypto-assets)
+      - [2. Capturing crypto asset properties](#2-capturing-crypto-asset-properties)
+      - [3. Capturing crypto asset dependencies](#3-capturing-crypto-asset-dependencies)
+      - [4.  Applicability to various software components](#4--applicability-to-various-software-components)
+      - [5. High compatibility to CycloneDX SBOM and related tooling](#5-high-compatibility-to-cyclonedx-sbom-and-related-tooling)
+      - [6. Enable automatic reasoning](#6-enable-automatic-reasoning)
   - [CBOM Schema](#cbom-schema)
     - [crypto-asset](#crypto-asset)
     - [cryptoProperties](#cryptoproperties)
@@ -52,28 +58,28 @@ There are a number of common SBOM standards:
 
 The overall design goal of CBOM is to provide an abstraction that allows modelling and representing crypto assets in a structured object format. This comprises the following points.
 
-1. Modelling crypto assets
+#### 1. Modelling crypto assets
 
 Crypto assets occur in several forms. Algorithms and protocols are most commonly implemented in specialized cryptographic libraries. They may however also be 'hardcoded' in software components. Certificates and related crypto material like keys, tokens, secrets or passwords are other crypto assets to be modelled.
 
 
-2. Capturing crypto asset properties
+#### 2. Capturing crypto asset properties
 
 Crypto assets have properties that uniquely define them and that make them actionable for further reasoning. As an example, it makes a difference if one knows the algorithm family (e.g. AES) or the specific variant or instantiation (e.g. AES-128-GCM). This is because the security level and the algorithm primitive (authenticated encryption) is only defined by the definition of the algorithm variant. The presence of a weak cryptographic algorithm like SHA1 vs. HMAC-SHA1 also makes a difference. Therefore, the goal of CBOM is to capture relevant crypto asset properties.
 
-3. Capturing crypto asset dependencies
+#### 3. Capturing crypto asset dependencies
 
 To understand the impact of a crypto asset, it is important to capture its dependencies. Crypto libraries 'implement' certain algorithms and protocols, but their implementation alone does not reflect their usage by applications. CBOM therefore differentiates between 'implements' and 'uses' dependencies. It is possible to model algorithms or protocols that use other algorithms (e.g. TLS 1.3 uses ECDH/secp256r1), libraries that implement algorithms and applications that 'use' algorithms from a library.
 
-4.  Applicability to various software components
+#### 4.  Applicability to various software components
 
 CycloneDX supports various software components: applications, frameworks, libraries, containers, operating-systems, devices, firmware and files. CBOM allows to use these components and represent their dependency to crypto assets.
 
-5. High compatibility to CycloneDX SBOM and related tooling
+#### 5. High compatibility to CycloneDX SBOM and related tooling
 
 CBOM is an extension of the CycloneDX SBOM standard. It integrates crypto assets as an additional 'component' in the CycloneDX schema and further extends dependencies with the notion of 'dependencyType' to model 'uses' and 'implements' relationships. Besides these extensions, the CBOM schema is fully compatible to CycloneDX and allows access to the related tooling the ecosystem provides.
 
-6. Enable automatic reasoning
+#### 6. Enable automatic reasoning
 
 CBOM enables tooling to automatically reason about crypto assets and their dependencies. This allows checking for compliance with policies that apply to cryptographic use and implementation.
 
@@ -81,9 +87,10 @@ CBOM enables tooling to automatically reason about crypto assets and their depen
 
 The CBOM schema is available as a JSON schema.
 
-File: [bom-1.4-cbom-1.0.schema.json](bom-1.4-cbom-1.0.schema.json).
+- [bom-1.5-cbom-1.1.schema.json](bom-1.5-cbom-1.1.schema.json)
+- (deprecated) [bom-1.4-cbom-1.0.schema.json](bom-1.5-cbom-1.1.schema.json)
 
-CBOM extends the CycloneDX standard (version 1.4) with the following properties that will be described in more detail:
+CBOM extends the CycloneDX standard with the following properties that will be described in more detail:
 
 - Component: `crypto-asset`
 - Properties: `cryptoProperties`
@@ -93,7 +100,7 @@ CBOM extends the CycloneDX standard (version 1.4) with the following properties 
 
 Crypto-asset is a representation of a [component type](https://cyclonedx.org/specification/overview/#components). The type and the name are required component properties. 
 
-```
+```json
 "component": {
       "type": "object",
       "title": "Component Object",
@@ -124,21 +131,27 @@ Crypto-asset is a representation of a [component type](https://cyclonedx.org/spe
 The `cryptoProperties` object describes the following `assetTypes`:
 
 - `algorithm`
+- `key`
 - `certificate`
-- `relatedCryptoMaterial`
 - `protocol`
+- `relatedCryptoMaterial`
 
 #### Algorithm
 
 Describes a cryptographic algorithm. If `algorithm` is selected, the object `algorithmProperties` shall be used to define further properties:
 
-- `primitive`: an enum defining the cryptographic primitive (e.g. drbg, blockcipher).
-- `variant`: defines the variant of an algorithm (e.g. `AES-128-GCM`).
-- `implementationPlatform`: an enum defining the platform where the algorithm is implemented (e.g. `x86_64`), if known or applicable.
-- `certificationLevel`: an enum defining the certification level in which the algorithm has been implemented (e.g. `fips140-3-l1`), if known or applicable.
-- `mode`: the mode of operation of an algorithm of primitive blockcipher (e.g. `cbc`), if known or applicable.
-- `padding`: the padding scheme used for the cryptographic algorithm (e.g. `pkcs7` padding), if known or applicable.
-- `cryptoFunction`: the associated crypto functions used or implemented for an algorithm (e.g. `keygen`), if known or applicable.
+| Property        | Description                                                          |
+|-----------------|----------------------------------------------------------------------|
+|`primitive`      | An enum defining the cryptographic primitive (e.g. drbg, blockcipher).|
+|`variant`        | Defines the variant of an algorithm (e.g. `AES-128-GCM`, `RSA-4096`).|
+|`implementationLevel`| An enum defining the level of implementation for the algorithm (e.g, `softwarePlainRam`). |
+|`implementationPlatform`| An enum defining the platform where the algorithm is implemented (e.g. `x86_64`).
+|`certificationLevel`| An enum defining the certification level in which the algorithm has been implemented (e.g. `fips140-3-l1`). |
+|`mode`| The mode of operation of an algorithm of primitive blockcipher (e.g. `cbc`).|
+|`padding`| The padding scheme used for the cryptographic algorithm (e.g. `pkcs7` padding).|
+|`cryptoFunction`| the associated crypto functions used or implemented for an algorithm (e.g. `keygen`, `sign`).|
+|`classicalSecurityLevel`| Defines the classical security level in bits for the algorithm.|
+|`nistQuantumSecurityLevel`| This property defines the quantum security level of the algorithm. The security level corresponds to the [security strength categories](https://csrc.nist.gov/projects/post-quantum-cryptography/post-quantum-cryptography-standardization/evaluation-criteria/security-(evaluation-criteria)) defined by NIST for the PQC standardization process. The value is an integer ranging from `0` to `6`, while `0` is chosen if none of the NIST categories are met. |
 
 Note that some `algorithmProperties` fields may be redundant. For example, the `variant` description `AES-128-GCM` also contains information about the `mode` of operation `gcm`. Explicitly recording the `mode` properties will simplify the reasoning on the CBOM.
 
@@ -146,13 +159,17 @@ Note that some `algorithmProperties` fields may be redundant. For example, the `
 
 Describes a cryptographic certificate. If `certificate` is selected, the object `certificateProperties` shall be used to define further properties:
 
-- `subjectName`: subjectName property of a certificate, if known or applicable.
-- `issuerName`: issuerName property of a certificate, if known or applicable.
-- `notValidBefore`: not valid before property of a certificate, if known or applicable.
-- `certificateAlgorithm`: certificate public key algorithm of a certificate, if known or applicable.
-- `certificateFormat`: certificate format, e.g. X.509, PEM, DER, CVC, if known or applicable.
-- `certificateExtensions`: certificate extensions of a certificate, if known or applicable.
-
+| Property        | Description                                                          |
+|-----------------|----------------------------------------------------------------------|
+|`subjectName`| _SubjectName_ property of a certificate. |
+|`issuerName`| _IssuerName property_ of a certificate.|
+|`notValidBefore`| _Not valid before_ property of a certificate.|
+|`notValidAfter`| _Not valid after property_ of a certificate.|
+|`signatureAlgorithm`| _Signature Algorithm_ of a certificate. Algorithm used by the subject to sign the certificate (`bom-ref` to algorithm component). |
+|`subjectPublicKeyAlgorithm`| Algorithm used to generate the public key of a certificate (`bom-ref` to algorithm component). |
+|`subjectPublicKey`| Public key of a certificate (`bom-ref` to key component).|
+|`certificateFormat`| Certificate format, e.g. `X.509`, `PEM`, `DER`, `CVC`. |
+|`certificateExtension`| File extensions of a certificate (e.g. `pem`, `cer`). |
 
 #### RelatedCryptoMaterial
 
