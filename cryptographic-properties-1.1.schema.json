@@ -426,11 +426,6 @@
                     }
                 }
             },
-            "scanner": {
-                "type": "string",
-                "title": "scanner",
-                "description": "scanner name that detected the crypto-asset"
-            },
             "detectionContext": {
                 "type": "array",
                 "additionalItems": false,
