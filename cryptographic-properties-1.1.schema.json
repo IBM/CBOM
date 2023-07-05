@@ -252,7 +252,7 @@
                 "description": "Properties for crypto assets of asset type 'relatedCryptoMaterial'",
                 "additionalProperties": false,
                 "properties": {
-                    "relatedCryptoMaterialType": {
+                    "type": {
                         "type": "string",
                         "title": "relatedCryptoMaterialType",
                         "description": "The type for the related crypto material",
