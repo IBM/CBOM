@@ -119,7 +119,9 @@ Crypto-asset is a representation of a [component type](https://cyclonedx.org/spe
             "file",
             "crypto-asset"
           ],
-...          
+        }
+      }
+}        
 ```
 
 ### cryptoProperties
