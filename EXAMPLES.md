@@ -37,10 +37,10 @@ A crypto algorithm is added in the `components` array of the BOM. The example be
                 "implementationLevel": "softwarePlainRam",
                 "implementationPlatform": "x86_64",
                 "certificationLevel": "none",
-                "cryptoFunctions": ["keygen", "encrypt", "decrypt", "tag"]
-            },
-            "classicalSecurityLevel": 128,
-            "nistQuantumSecurityLevel": 1
+                "cryptoFunctions": ["keygen", "encrypt", "decrypt", "tag"],
+                "classicalSecurityLevel": 128,
+                "nistQuantumSecurityLevel": 1
+            }
         }
       }
     ...
@@ -64,9 +64,9 @@ An example with the QSC Signature algorithm `Dilithium-5` is listed below. As re
                 "implementationLevel": "softwarePlainRam",
                 "implementationPlatform": "x86_64",
                 "certificationLevel": "none",
-                "cryptoFunctions": ["keygen", "sign", "verify"]
-            },
-            "nistQuantumSecurityLevel": 5
+                "cryptoFunctions": ["keygen", "sign", "verify"],
+                "nistQuantumSecurityLevel": 5
+            }
         }
       }
     ...
@@ -139,23 +139,25 @@ A crypto algorithm is added in the `components` array of the BOM. The example be
 ```
     "components": [
     ...
-      {
-        "type": "crypto-asset",
-        "bom-ref": "ref:10:e6:fc:62:b7:41:8a:d5:00:5e:45:b6",
-        "name": "cert-wikipedia-10:e6:fc:62:b7:41:8a:d5:00:5e:45:b6",
-        "cryptoProperties": {
-            "assetType": "certificate",
-            "certificateProperties": {
-                "subjectName": "C=US, ST=California, L=San Francisco, O=Wikimedia Foundation, Inc., CN=*.wikipedia.org",
-                "issuerName": "C=BE, O=GlobalSign nv-sa, CN=GlobalSign Organization Validation CA - SHA256 - G2",
-                "notValidBefore": "2016-11-21T08:00:00Z",
-                "notValidAfter": "2017-11-22T07:59:59Z",
-                "certificateAlgorithm": "prime256v1",
-                "certificateSignatureAlgorithm": "sha256WithRSAEncryption",
-                "certificateFormat": "X.509"
-            }
+        {
+          "type": "crypto-asset",
+          "bom-ref": "ref:10:e6:fc:62:b7:41:8a:d5:00:5e:45:b6",
+          "name": "cert-wikipedia-10:e6:fc:62:b7:41:8a:d5:00:5e:45:b6",
+          "cryptoProperties": {
+              "assetType": "certificate",
+              "certificateProperties": {
+                  "subjectName": "C=US, ST=California, L=San Francisco, O=Wikimedia Foundation, Inc., CN=*.wikipedia.org",
+                  "issuerName": "C=BE, O=GlobalSign nv-sa, CN=GlobalSign Organization Validation CA - SHA256 - G2",
+                  "notValidBefore": "2016-11-21T08:00:00Z",
+                  "notValidAfter": "2017-11-22T07:59:59Z",
+                  "subjectPublicKeyAlgorithm": "prime256v1",
+                  "signatureAlgorithm": "sha256WithRSAEncryption",
+                  "subjectPublicKey": "ref:00:01:02:03:04:05:06:07:08:09:0a:0b",
+                  "certificateFormat": "X.509",
+                  "certificateExtension": "crt"
+              }
+          }
         }
-      }
     ...
     ]
 ```
@@ -174,7 +176,7 @@ Related crypto material is added in the `components` array of the BOM. The examp
         "cryptoProperties": {
             "assetType": "relatedCryptoMaterial",
             "relatedCryptoMaterialProperties": {
-                "relatedCryptoMaterialType": "publicKey",
+                "type": "publicKey",
                 "size": 3608,
                 "format": "PEM",
                 "secured": false

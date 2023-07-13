@@ -21,7 +21,8 @@
         "title": "BOM Format",
         "description": "Specifies the format of the BOM. This helps to identify the file as CycloneDX since BOMs do not have a filename convention nor does JSON schema support namespaces. This value MUST be \"CycloneDX\".",
         "enum": [
-          "CycloneDX"
+          "CycloneDX",
+          "CBOM"
         ]
       },
       "specVersion": {
