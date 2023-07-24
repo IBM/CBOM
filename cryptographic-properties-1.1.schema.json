@@ -51,7 +51,12 @@
                     "variant": {
                         "type": "string",
                         "title": "variant",
-                        "description": "The variant for the crypto algorithm"
+                        "description": "The variant for the crypto algorithm, algorithm components should be delimited with '-'",
+                        "examples": [
+                            "aes-128-cbc-pkcs7",
+                            "rsa-2048-cbc-oaep-sha256-mgf1",
+                            "kyber-1024"
+                        ]
                     },
                     "implementationLevel": {
                         "type": "string",
