@@ -538,6 +538,10 @@
                                 "title": "Extended Sequence Number is used"
                             }
                         }
+                    },
+                    "cryptoAssets": {
+                        "$ref": "#/definitions/cryptoRefArray",
+                        "title": "A list of protocol-related cryptographic assets"
                     }
                 }
             },
