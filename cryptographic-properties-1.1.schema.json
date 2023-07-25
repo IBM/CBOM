@@ -453,7 +453,7 @@
                         "$ref": "#/definitions/size",
                         "title": "Crypto asset size (in bits)"
                     },
-                    "algorithmRef": {
+                    "keyAlgorithmRef": {
                         "$ref": "#/definitions/cryptoRef",
                         "title": "Algorithm reference",
                         "description": "Bom-ref to algorithm used to generate the key"
@@ -613,7 +613,7 @@
                             }
                         }
                     },
-                    "cryptoAssets": {
+                    "cryptoRefArray": {
                         "$ref": "#/definitions/cryptoRefArray",
                         "title": "A list of protocol-related cryptographic assets"
                     }
