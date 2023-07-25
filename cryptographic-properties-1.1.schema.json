@@ -436,7 +436,6 @@
                             "password",
                             "credential",
                             "token",
-                            "group",
                             "other",
                             "unknown"
                         ]
