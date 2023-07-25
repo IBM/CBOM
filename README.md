@@ -22,6 +22,7 @@ There is a need to discover, manage and report cryptography as the first step on
     - [cryptoProperties](#cryptoproperties)
       - [Algorithm](#algorithm)
       - [Certificate](#certificate)
+      - [Key](#key)
       - [RelatedCryptoMaterial](#relatedcryptomaterial)
       - [Protocol](#protocol)
       - [OID](#oid)
@@ -170,6 +171,24 @@ Describes a cryptographic certificate. If `certificate` is selected, the object 
 |`certificateFormat`| Certificate format, e.g. `X.509`, `PEM`, `DER`, `CVC`. |
 |`certificateExtension`| File extensions of a certificate (e.g. `pem`, `cer`). |
 
+#### Key
+
+Describes a cryptographic key. If `key` is selected, the object `keyProperties` shall be used to define further properties:
+
+| Property        | Description                                                          |
+|-----------------|----------------------------------------------------------------------|
+|`type`| An enum defining the type of key (e.g. `privateKey`, `publicKey`, `secretKey`). |
+|`id`| An identifier for the key. |
+|`state`| The key state according to NIST SP 800-57 (e.g. `active`, `suspended`, `destroyed`).|
+|`size`|Key size in bits.|
+|`algorithmRef`| Algorithm used to generate the key (`bom-ref` to algorithm component).|
+|`securedBy`| Specifies the mechanism by which the key is secured by, if applicable. |
+|`creationDate`| The date and time (timestamp) when the key was created. |
+|`activationDate`| The date and time (timestamp) when the key was activated. |
+|`updateDate`| The date and time (timestamp) when the key was updated. |
+|`expirationDate`| The date and time (timestamp) when the key expired. |
+
+
 #### RelatedCryptoMaterial
 
 Describes related cryptographic material. The `relatedCryptoMaterial` assetType corresponds to cryptographic material inventoried in the CBOM. If `relatedCryptoMaterial` is selected, the object `relatedCryptoMaterialProperties` shall be used to define further properties:
@@ -180,7 +199,7 @@ Describes related cryptographic material. The `relatedCryptoMaterial` assetType 
 |`value`| The assosiated value of the crypto material. |
 |`size`| Size in bits of the related crypto material.|
 |`format`| Format of the related crypto material (e.g. `P8`, `PEM`, `DER`).|
-|`secured`| Indicates if the related crypto material is secured or not.|
+|`securedBy`| Specifies the mechanism by which the crypto material is secured by, if applicable.|
 
 #### Protocol
 
