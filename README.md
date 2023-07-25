@@ -142,6 +142,7 @@ Describes a cryptographic algorithm. If `algorithm` is selected, the object `alg
 |-----------------|----------------------------------------------------------------------|
 |`primitive`      | An enum defining the cryptographic primitive (e.g. drbg, blockcipher).|
 |`variant`        | Defines the variant of an algorithm (e.g. `AES-128-GCM`, `RSA-4096`).|
+|`curve`| If applicable, the elliptic curve of the crypto algorithm (e.g, `x25519`). |
 |`implementationLevel`| An enum defining the level of implementation for the algorithm (e.g, `softwarePlainRam`). |
 |`implementationPlatform`| An enum defining the platform where the algorithm is implemented (e.g. `x86_64`).
 |`certificationLevel`| An enum defining the certification level in which the algorithm has been implemented (e.g. `fips140-3-l1`). |
@@ -176,6 +177,7 @@ Describes related cryptographic material. The `relatedCryptoMaterial` assetType 
 | Property        | Description                                                          |
 |-----------------|----------------------------------------------------------------------|
 |`type`| An enum defining the type of cryptographic material (e.g. `signature`, `tag`, `token`).|
+|`value`| The assosiated value of the crypto material. |
 |`size`| Size in bits of the related crypto material.|
 |`format`| Format of the related crypto material (e.g. `P8`, `PEM`, `DER`).|
 |`secured`| Indicates if the related crypto material is secured or not.|
@@ -189,8 +191,8 @@ Describes cryptographic protocols. If `protocol` is selected, the object `protoc
 |`type` | An enum defining the type of a protocol (e.g. `tls`, `ssh`, `ipsec`). |
 |`name` | Common name of the protocol (e.g. `TLSv1.3`, `SSH-1.99`). |
 |`version`| The version of the protocol (e.g. `1.0`, `1.3`)|
-|`tlsCipherSuites`| For TLS protocols - defines the TLS cipher suites supported by a TLS protocol instantiation. |
-|`ikev2TransformTypes`| For IPsec protocols - defines the IKEv2 transform types supported by the IPsec instantiation. This property is defined in an array containing entries for (1) transform type 1, (2) transform type 2, (3) transform type 3, and (4) transform type 4.|
+|`cipherSuites`| Defines a list of cipher suites supported by a protocol. |
+|`ikev2TransformTypes`| For IPsec protocols - defines the IKEv2 transform types supported by the IPsec instantiation. This property is defined in an array containing references to other crypto assets for (1) encryption algorithms, (2) pseudorandom functions, (3) integrity algorithms, (4) DH groups, and (5) Extended Sequence Number used. |
 
 #### OID
 
