@@ -818,7 +818,9 @@
                     "examples": [
                         "HSM",
                         "TPM",
-                        "SGX"
+                        "SGX",
+                        "Software",
+                        "None"
                     ]
                 },
                 "algorithmRef": {
