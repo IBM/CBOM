@@ -380,11 +380,6 @@
                         "title": "Algorithm reference",
                         "description": "Bom-ref to signature algorithm used by the certificate"
                     },
-                    "subjectPublicKeyAlgorithm": {
-                        "$ref": "#/definitions/cryptoRef",
-                        "title": "Algorithm reference",
-                        "description": "Bom-ref to the algorithm used to generate the public key for the subject"
-                    },
                     "subjectPublicKey": {
                         "$ref": "#/definitions/cryptoRef",
                         "title": "Key reference",

@@ -226,7 +226,6 @@ Describes a cryptographic certificate. If `certificate` is selected, the object 
 |`notValidBefore`| _Not valid before_ property of a certificate.|
 |`notValidAfter`| _Not valid after property_ of a certificate.|
 |`signatureAlgorithm`| _Signature Algorithm_ of a certificate. Algorithm used by the subject to sign the certificate (`bom-ref` to algorithm component). |
-|`subjectPublicKeyAlgorithm`| Algorithm used to generate the public key of a certificate (`bom-ref` to algorithm component). |
 |`subjectPublicKey`| Public key of a certificate (`bom-ref` to key component).|
 |`certificateFormat`| Certificate format, e.g. `X.509`, `PEM`, `DER`, `CVC`. |
 |`certificateExtension`| File extensions of a certificate (e.g. `pem`, `cer`). |

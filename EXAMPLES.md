@@ -206,9 +206,74 @@ A cryptographic protocol is added to the `components` array of the BOM. The exam
                             "0x30"
                         ]
                     }
+                ],
+                "cryptoRefArray": [
+                    "pkg:crypto/certificate/google.com@sha256:1e15e0fbd3ce95bde5945633ae96add551341b11e5bae7bba12e98ad84a5beb4"
                 ]
             },
             "oid": "1.3.18.0.2.32.104"
+        }
+    },
+    {
+        "name": "google.com",
+        "type": "crypto-asset",
+        "bom-ref": "pkg:crypto/certificate/google.com@sha256:1e15e0fbd3ce95bde5945633ae96add551341b11e5bae7bba12e98ad84a5beb4",
+        "purl": "pkg:crypto/certificate/google.com@sha256:1e15e0fbd3ce95bde5945633ae96add551341b11e5bae7bba12e98ad84a5beb4",
+        "cryptoProperties": {
+            "assetType": "certificate",
+            "certificateProperties": {
+                "subjectName": "CN = www.google.com",
+                "issuerName": "C = US, O = Google Trust Services LLC, CN = GTS CA 1C3",
+                "notValidBefore": "2016-11-21T08:00:00Z",
+                "notValidAfter": "2017-11-22T07:59:59Z",
+                "signatureAlgorithm": "pkg:crypto/algorithm/sha512-rsa@1.2.840.113549.1.1.13",
+                "subjectPublicKey": "pkg:crypto/key/rsa2048@1.2.840.113549.1.1.1",
+                "certificateFormat": "X.509",
+                "certificateExtension": "crt"
+            }
+        }
+    },
+    {
+        "name": "SHA512withRSA",
+        "type": "crypto-asset",
+        "bom-ref": "pkg:crypto/algorithm/sha512-rsa@1.2.840.113549.1.1.13",
+        "purl": "pkg:crypto/algorithm/sha512-rsa@1.2.840.113549.1.1.13",
+        "cryptoProperties": {
+            "assetType": "algorithm",
+            "algorithmProperties": {
+                "variant": "sha512-rsa",
+                "implementationLevel": "softwarePlainRam",
+                "implementationPlatform": "x86_64",
+                "certificationLevel": "none",
+                "cryptoFunctions": [
+                    "digest"
+                ],
+                "nistQuantumSecurityLevel": 0
+            },
+            "oid": "1.2.840.113549.1.1.13"
+        }
+    },
+    {
+        "name": "RSA-2048",
+        "type": "crypto-asset",
+        "bom-ref": "pkg:crypto/key/rsa2048@1.2.840.113549.1.1.1",
+        "purl": "pkg:crypto/key/rsa2048@1.2.840.113549.1.1.1",
+        "cryptoProperties": {
+            "assetType": "key",
+            "keyProperties": {
+                "type": "publicKey",
+                "id": "2e9ef09e-dfac-4526-96b4-d02f31af1b22",
+                "state": "active",
+                "size": 2048,
+                "keyAlgorithmRef": "pkg:crypto/algorithm/rsa2048@1.2.840.113549.1.1.1",
+                "securedBy": {
+                    "mechanism": "Software",
+                    "algorithmRef": "pkg:crypto/algorithm/aes128-gcm@2.16.840.1.101.3.4.1.6"
+                },
+                "creationDate": "2016-11-21T08:00:00Z",
+                "activationDate": "2016-11-21T08:20:00Z",
+            },
+            "oid": "1.2.840.113549.1.1.1"
         }
     },
     {
@@ -347,7 +412,6 @@ A crypto algorithm is added in the `components` array of the BOM. The example be
                 "notValidBefore": "2016-11-21T08:00:00Z",
                 "notValidAfter": "2017-11-22T07:59:59Z",
                 "signatureAlgorithm": "pkg:crypto/algorithm/sha512-rsa@1.2.840.113549.1.1.13",
-                "subjectPublicKeyAlgorithm": "pkg:crypto/algorithm/rsa2048@1.2.840.113549.1.1.1",
                 "subjectPublicKey": "pkg:crypto/key/rsa2048@1.2.840.113549.1.1.1",
                 "certificateFormat": "X.509",
                 "certificateExtension": "crt"
