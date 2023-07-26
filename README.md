@@ -134,7 +134,7 @@ Crypto-asset is a representation of a [component type](https://cyclonedx.org/spe
 
 ### Purl (package url)
 
-Similar to the schema of packages url's (purl) for used depedent libraries, that is heavily used in SBOMs, will be provide a schema for purls related to crypto-assets.
+Similar to the package url (purl) scheme for dependent libraries commonly used in SBOMs, we will provide a scheme for purls related to crypto-assets.
 
 #### Algorithm
 
@@ -158,7 +158,7 @@ Examples:
 
 `pkg:crypto/certificate/${id}@${algo:hash}`
 
-> The `id` is not fixed defined. For an X509 certificate a plausable id could be the common name (CN). With `hash` being the hash calculated over the certificate file by using a secure hash algorithm (`sha256:f323...`).
+> The `id` is not defined in a fixed way. For an X509 certificate a plausible id could be the Common Name (CN). `hash`  is the hash calculated over the certificate file using a secure hash algorithm (`sha256:f323...`).
 
 Examples:
 - `pkg:crypto/certificate/google.com@sha256:1e15e0fbd3ce95bde5945633ae96add551341b11e5bae7bba12e98ad84a5beb4`
@@ -178,7 +178,7 @@ Examples:
 
 `pkg:crypto/relatedCryptoMaterial/${type}@${algo:hash}`
 
-> The hash should be calculated over the `value` property of the related crypto material. 
+> The hash should be calculated using the `value` property of the related crypto material.
 
 Examples:
 - `pkg:crypto/relatedCryptoMaterial/signature@${algo:hash}`
