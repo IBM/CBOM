@@ -3,4 +3,6 @@
 # directories
 .test/
 
-.DS_Store
+# drawio
+*.bkp
+*.dtmp
