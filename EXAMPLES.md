@@ -12,8 +12,6 @@ This document provides examples for using Cryptography Bills of Materials (CBOMs
   - [Certificate](#certificate)
   - [CBOM Project Metadata](#cbom-project-metadata)
 - [Dependencies](#dependencies)
-  - [Dependencies viewed from an application](#dependencies-viewed-from-an-application)
-  - [Dependencies viewed from a library](#dependencies-viewed-from-a-library)
 
 # Components
 
@@ -519,131 +517,12 @@ The two dependency types are:
 
 A component can have a dependencies of both types `implements` and `uses`. A crypto asset A is considered as 'used' by component C if there is a `used` dependency path from C to A.
 
-## Dependencies viewed from an application
+> **Note:** In classical SBOM, a component represents an external dependency to a library, application, service, etc. Since for some crypto, e.g. the relationship between a protocol and the algorithms used, this relationship is not external but internal, we decided to express this relationship differently by using specific properties to reference assets rather than using the classical dependency implementation.
 
-The chart below shows a partial dependency graph from a CBOM of the application `nginx`. Dependency types `uses` are marked with `u` and dependency types `implements` are marked with `i`.
+Example:
 
-![Dependency graph of an application](img/app-cbom.png "Dependency graph of an application")
+![Dependency graph of an application](img/dependencies.png "Dependency graph of an application")
 
-Key conclusions from the dependency graph:
-- A `uses` path exists from nginx to TLS v1.3, AES-128-GCM, SHA256 and HMAC-DRBG. These crypto assets can be considered used by nginx.
-- No `uses` paths from nginx to TLS v1.2, SSL v3 and MD5 exists. These crypto assets can be considered implemented by libraries (libssl.so, libcrypto.so) but not used by nginx.
+The example shows an application (nginx) that uses the `libssl` cryptographic library. This library implements the `TLSv1.2` protocol. The relationship between the application, the library and the protocol can be expressed by using the `depenedencies` properties of the SBOM standard.
 
-Note: Suppose that SSL v3 uses MD5. The dependency graph will still show no `uses` dependency from libcrypto.so to MD5 since there is no `uses` dependency from any component to SSL v3.
-
-The dependency array of the CBOM will look as follows (for simplicity, we use the crypto asset names as the `bom-ref` property. In practice, one use CPE, purl and OID identifiers):
-
-```
-    "dependencies": [
-        {
-            "ref": "nginx",
-            "dependsOn": [
-                "libssl"
-            ],
-            "dependencyType": "uses"
-        },
-        {
-            "ref": "libssl.so",
-            "dependsOn": [
-                "TLS v1.3", "TLS v1.2", "SSL v3"
-            ],
-            "dependencyType": "implements"
-        },
-        {
-            "ref": "libssl.so",
-            "dependsOn": [
-                "TLS v1.3"
-            ],
-            "dependencyType": "uses"
-        },
-        {
-            "ref": "TLS v1.3",
-            "dependsOn": [
-                "libcrypto.so"
-            ],
-            "dependencyType": "uses"
-        },
-        {
-            "ref": "TLS v1.2",
-            "dependsOn": [
-                "libcrypto.so"
-            ],
-            "dependencyType": "uses"
-        },
-        {
-            "ref": "SSL v3",
-            "dependsOn": [
-                "libcrypto.so"
-            ],
-            "dependencyType": "uses"
-        },
-        {
-            "ref": "libcrypto.so",
-            "dependsOn": [
-                "MD5", "AES-128-GCM", "SHA256", "HMAC-DRBG"
-            ],
-            "dependencyType": "implements"
-        },
-        {
-            "ref": "libcrypto.so",
-            "dependsOn": [
-                "AES-128-GCM", "SHA256", "HMAC-DRBG"
-            ],
-            "dependencyType": "uses"
-        }
-    ]
-```
-
-## Dependencies viewed from a library
-
-The chart below shows a partial dependency graph from a CBOM of crypto library `libssl.so`.
-
-![Dependency graph of a library](img/lib-cbom.png "Dependency graph of a library")
-
-Key conclusions from the dependency graph:
-- libssl.so implements TLS protocol versions TLS v1.3, TLS v1.2 and SSL v3
-- The TLS protocols versions TLS v1.3, TLS v1.2 and SSL v3 use libcrypto.so
-
-Note that, in contrast to the dependencies viewed from the application, there are no `uses` dependencies from libcrypto.so to any algorithm. This is because there is no `uses` dependency to any of the TLS protocol versions. If, for example, SSL v3 is the top level component, `uses` dependencies to the algorithms used by SSL v3 are added.
-
-The dependency array of the CBOM will look as follows (for simplicity, we use the crypto asset names as the `bom-ref` property. In practice, one use CPE, purl and OID identifiers):
-
-```
-    "dependencies": [
-        {
-            "ref": "libssl.so",
-            "dependsOn": [
-                "TLS v1.3", "TLS v1.2", "SSL v3"
-            ],
-            "dependencyType": "implements"
-        },
-        {
-            "ref": "TLS v1.3",
-            "dependsOn": [
-                "libcrypto.so"
-            ],
-            "dependencyType": "uses"
-        },
-        {
-            "ref": "TLS v1.2",
-            "dependsOn": [
-                "libcrypto.so"
-            ],
-            "dependencyType": "uses"
-        },
-        {
-            "ref": "SSL v3",
-            "dependsOn": [
-                "libcrypto.so"
-            ],
-            "dependencyType": "uses"
-        },
-        {
-            "ref": "libcrypto.so",
-            "dependsOn": [
-                "MD5", "AES-128-GCM", "SHA256", "HMAC-DRBG"
-            ],
-            "dependencyType": "implements"
-        }
-    ]
-```
+Since a tls protocol supports different cipher suites that include multiple algorithms, there should be a way to represent these relationships as part of the CBOM. Compared to adding the algorithms as "classic" dependencies to the protocol, we defined special property fields that allow referencing the deployment with additional meaning. The protocolProperties allow adding an array of algorithms to a cipher suite as part of the cipher suite array. By modeling and then referencing these algorithms, we can still have only one classical component at the SBOM level, but a subtree of crypto dependencies within the crypto asset components.
