@@ -557,15 +557,6 @@
                             "unknown"
                         ]
                     },
-                    "name": {
-                        "type": "string",
-                        "title": "protocol name",
-                        "description": "The common name of the protocol",
-                        "examples": [
-                            "TLSv1.3",
-                            "SSH-1.99"
-                        ]
-                    },
                     "version": {
                         "type": "string",
                         "title": "protocol version",
