@@ -140,19 +140,23 @@ Similar to the package url (purl) scheme for dependent libraries commonly used i
 
 `pkg:crypto/algorithm/${variant}@${oid}`
 
+> Since not all algorithms have OIDs, it is optional the specify the OID.
+
 Examples:
-- `pkg:crypto/algorithm/kyber512@1.3.6.1.4.1.2.267.8`
-- `pkg:crypto/algorithm/aes128-ecb@2.16.840.1.101.3.4.1.1`
-- `pkg:crypto/algorithm/rsa2048-sha256@1.2.840.113549.1.1.11`
+- `pkg:crypto/algorithm/kyber-512@1.3.6.1.4.1.2.267.8`
+- `pkg:crypto/algorithm/aes-128-ecb@2.16.840.1.101.3.4.1.1`
+- `pkg:crypto/algorithm/rsa-2048-sha-256@1.2.840.113549.1.1.11`
 
 #### Key
 
 `pkg:crypto/key/${variant}@${oid}`
 
+> Since not all algorithms have OIDs, it is optional the specify the OID.
+
 Examples:
-- `pkg:crypto/key/kyber512@1.3.6.1.4.1.2.267.8`
-- `pkg:crypto/key/aes128-ecb@2.16.840.1.101.3.4.1.1`
-- `pkg:crypto/key/rsa2048@1.2.840.113549.1.1.1`
+- `pkg:crypto/key/kyber-512@1.3.6.1.4.1.2.267.8`
+- `pkg:crypto/key/aes-128-ecb@2.16.840.1.101.3.4.1.1`
+- `pkg:crypto/key/rsa-2048@1.2.840.113549.1.1.1`
 
 #### Certificate
 
@@ -202,7 +206,7 @@ Describes a cryptographic algorithm. If `algorithm` is selected, the object `alg
 | Property        | Description                                                          |
 |-----------------|----------------------------------------------------------------------|
 |`primitive`      | An enum defining the cryptographic primitive (e.g. drbg, blockcipher).|
-|`variant`        | Defines the variant of an algorithm. The varaint should be described as the following schema: <br><br> `${algorithm}${keysize}-${mode}-${padding}- ...` <br><br> Examples:<br> `aes128-cbc-pkcs7`, `rsa2048-cbc-oaep-sha256-mgf1`, `kyber1024`|
+|`variant`        | Defines the variant of an algorithm. The varaint should be described as the following schema: <br><br> `${algorithm}$-{keysize}-${mode}-${padding}- ...` <br><br> Examples:<br> `aes-128-cbc-pkcs7`, `rsa-2048-cbc-oaep-sha-256-mgf1`, `kyber-1024`|
 |`curve`| If applicable, the elliptic curve of the crypto algorithm (e.g, `x25519`). |
 |`implementationLevel`| An enum defining the level of implementation for the algorithm (e.g, `softwarePlainRam`). |
 |`implementationPlatform`| An enum defining the platform where the algorithm is implemented (e.g. `x86_64`).

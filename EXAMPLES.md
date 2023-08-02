@@ -24,12 +24,12 @@ A crypto algorithm is added in the `components` array of the BOM. The examples b
     {
         "name": "AES-128-GCM",
         "type": "crypto-asset",
-        "bom-ref": "pkg:crypto/algorithm/aes128-gcm@2.16.840.1.101.3.4.1.6",
-        "purl": "pkg:crypto/algorithm/aes128-gcm@2.16.840.1.101.3.4.1.6",
+        "bom-ref": "pkg:crypto/algorithm/aes-128-gcm@2.16.840.1.101.3.4.1.6",
+        "purl": "pkg:crypto/algorithm/aes-128-gcm@2.16.840.1.101.3.4.1.6",
         "cryptoProperties": {
             "assetType": "algorithm",
             "algorithmProperties": {
-                "variant": "aes128-gcm",
+                "variant": "aes-128-gcm",
                 "primitive": "ae",
                 "mode": "gcm",
                 "implementationLevel": "softwarePlainRam",
@@ -50,12 +50,12 @@ A crypto algorithm is added in the `components` array of the BOM. The examples b
     {
         "name": "SHA512withRSA",
         "type": "crypto-asset",
-        "bom-ref": "pkg:crypto/algorithm/sha512-rsa@1.2.840.113549.1.1.13",
-        "purl": "pkg:crypto/algorithm/sha512-rsa@1.2.840.113549.1.1.13",
+        "bom-ref": "pkg:crypto/algorithm/sha-512-rsa@1.2.840.113549.1.1.13",
+        "purl": "pkg:crypto/algorithm/sha-512-rsa@1.2.840.113549.1.1.13",
         "cryptoProperties": {
             "assetType": "algorithm",
             "algorithmProperties": {
-                "variant": "sha512-rsa",
+                "variant": "sha-512-rsa",
                 "implementationLevel": "softwarePlainRam",
                 "implementationPlatform": "x86_64",
                 "certificationLevel": "none",
@@ -70,12 +70,12 @@ A crypto algorithm is added in the `components` array of the BOM. The examples b
 ]
 ```
 
-An example with the QSC Signature algorithm `Dilithium-5` is listed below.
+An example with the QSC Signature algorithm `Dilithium5` is listed below.
 
 ```json
 "components": [
     {
-        "name": "Dilithium-5",
+        "name": "Dilithium5",
         "type": "crypto-asset",
         "bom-ref": "pkg:crypto/algorithm/dilithium5@1.3.6.1.4.1.2.267.7.8.7",
         "purl": "pkg:crypto/algorithm/dilithium5@1.3.6.1.4.1.2.267.7.8.7",
@@ -105,8 +105,8 @@ A cryptographic key is added in the `components` array of the BOM. The example b
     {
         "name": "RSA-2048",
         "type": "crypto-asset",
-        "bom-ref": "pkg:crypto/key/rsa2048@1.2.840.113549.1.1.1",
-        "purl": "pkg:crypto/key/rsa2048@1.2.840.113549.1.1.1",
+        "bom-ref": "pkg:crypto/key/rsa-2048@1.2.840.113549.1.1.1",
+        "purl": "pkg:crypto/key/rsa-2048@1.2.840.113549.1.1.1",
         "cryptoProperties": {
             "assetType": "key",
             "keyProperties": {
@@ -114,10 +114,10 @@ A cryptographic key is added in the `components` array of the BOM. The example b
                 "id": "2e9ef09e-dfac-4526-96b4-d02f31af1b22",
                 "state": "active",
                 "size": 2048,
-                "keyAlgorithmRef": "pkg:crypto/algorithm/rsa2048@1.2.840.113549.1.1.1",
+                "keyAlgorithmRef": "pkg:crypto/algorithm/rsa-2048@1.2.840.113549.1.1.1",
                 "securedBy": {
                     "mechanism": "Software",
-                    "algorithmRef": "pkg:crypto/algorithm/aes128-gcm@2.16.840.1.101.3.4.1.6"
+                    "algorithmRef": "pkg:crypto/algorithm/aes-128-gcm@2.16.840.1.101.3.4.1.6"
                 },
                 "creationDate": "2016-11-21T08:00:00Z",
                 "activationDate": "2016-11-21T08:20:00Z",
@@ -128,12 +128,12 @@ A cryptographic key is added in the `components` array of the BOM. The example b
     {
         "name": "RSA-2048",
         "type": "crypto-asset",
-        "bom-ref": "pkg:crypto/algorithm/rsa2048@1.2.840.113549.1.1.1",
-        "purl": "pkg:crypto/algorithm/rsa2048@1.2.840.113549.1.1.1",
+        "bom-ref": "pkg:crypto/algorithm/rsa-2048@1.2.840.113549.1.1.1",
+        "purl": "pkg:crypto/algorithm/rsa-2048@1.2.840.113549.1.1.1",
         "cryptoProperties": {
             "assetType": "algorithm",
             "algorithmProperties": {
-                "variant": "rsa2048",
+                "variant": "rsa-2048",
                 "implementationLevel": "softwarePlainRam",
                 "implementationPlatform": "x86_64",
                 "certificationLevel": "none",
@@ -148,12 +148,12 @@ A cryptographic key is added in the `components` array of the BOM. The example b
     {
         "name": "AES-128-GCM",
         "type": "crypto-asset",
-        "bom-ref": "pkg:crypto/algorithm/aes128-gcm@2.16.840.1.101.3.4.1.6",
-        "purl": "pkg:crypto/algorithm/aes128-gcm@2.16.840.1.101.3.4.1.6",
+        "bom-ref": "pkg:crypto/algorithm/aes-128-gcm@2.16.840.1.101.3.4.1.6",
+        "purl": "pkg:crypto/algorithm/aes-128-gcm@2.16.840.1.101.3.4.1.6",
         "cryptoProperties": {
             "assetType": "algorithm",
             "algorithmProperties": {
-                "variant": "aes128-gcm",
+                "variant": "aes-128-gcm",
                 "primitive": "ae",
                 "mode": "gcm",
                 "implementationLevel": "softwarePlainRam",
@@ -195,9 +195,9 @@ A cryptographic protocol is added to the `components` array of the BOM. The exam
                         "name": "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384",
                         "algorithms": [
                             "pkg:crypto/algorithm/ecdh-curve25519@1.3.132.1.12",
-                            "pkg:crypto/algorithm/rsa2048@1.2.840.113549.1.1.1",
-                            "pkg:crypto/algorithm/aes128-gcm@2.16.840.1.101.3.4.1.6",
-                            "pkg:crypto/algorithm/sha384@2.16.840.1.101.3.4.2.9"
+                            "pkg:crypto/algorithm/rsa-2048@1.2.840.113549.1.1.1",
+                            "pkg:crypto/algorithm/aes-128-gcm@2.16.840.1.101.3.4.1.6",
+                            "pkg:crypto/algorithm/sha-384@2.16.840.1.101.3.4.2.9"
                         ],
                         "identifiers": [
                             "0xC0",
@@ -234,12 +234,12 @@ A cryptographic protocol is added to the `components` array of the BOM. The exam
     {
         "name": "SHA512withRSA",
         "type": "crypto-asset",
-        "bom-ref": "pkg:crypto/algorithm/sha512-rsa@1.2.840.113549.1.1.13",
-        "purl": "pkg:crypto/algorithm/sha512-rsa@1.2.840.113549.1.1.13",
+        "bom-ref": "pkg:crypto/algorithm/sha-512-rsa@1.2.840.113549.1.1.13",
+        "purl": "pkg:crypto/algorithm/sha-512-rsa@1.2.840.113549.1.1.13",
         "cryptoProperties": {
             "assetType": "algorithm",
             "algorithmProperties": {
-                "variant": "sha512-rsa",
+                "variant": "sha-512-rsa",
                 "implementationLevel": "softwarePlainRam",
                 "implementationPlatform": "x86_64",
                 "certificationLevel": "none",
@@ -254,8 +254,8 @@ A cryptographic protocol is added to the `components` array of the BOM. The exam
     {
         "name": "RSA-2048",
         "type": "crypto-asset",
-        "bom-ref": "pkg:crypto/key/rsa2048@1.2.840.113549.1.1.1",
-        "purl": "pkg:crypto/key/rsa2048@1.2.840.113549.1.1.1",
+        "bom-ref": "pkg:crypto/key/rsa-2048@1.2.840.113549.1.1.1",
+        "purl": "pkg:crypto/key/rsa-2048@1.2.840.113549.1.1.1",
         "cryptoProperties": {
             "assetType": "key",
             "keyProperties": {
@@ -263,10 +263,10 @@ A cryptographic protocol is added to the `components` array of the BOM. The exam
                 "id": "2e9ef09e-dfac-4526-96b4-d02f31af1b22",
                 "state": "active",
                 "size": 2048,
-                "keyAlgorithmRef": "pkg:crypto/algorithm/rsa2048@1.2.840.113549.1.1.1",
+                "keyAlgorithmRef": "pkg:crypto/algorithm/rsa-2048@1.2.840.113549.1.1.1",
                 "securedBy": {
                     "mechanism": "Software",
-                    "algorithmRef": "pkg:crypto/algorithm/aes128-gcm@2.16.840.1.101.3.4.1.6"
+                    "algorithmRef": "pkg:crypto/algorithm/aes-128-gcm@2.16.840.1.101.3.4.1.6"
                 },
                 "creationDate": "2016-11-21T08:00:00Z",
                 "activationDate": "2016-11-21T08:20:00Z",
@@ -297,12 +297,12 @@ A cryptographic protocol is added to the `components` array of the BOM. The exam
     {
         "name": "RSA-2048",
         "type": "crypto-asset",
-        "bom-ref": "pkg:crypto/algorithm/rsa2048@1.2.840.113549.1.1.1",
-        "purl": "pkg:crypto/algorithm/rsa2048@1.2.840.113549.1.1.1",
+        "bom-ref": "pkg:crypto/algorithm/rsa-2048@1.2.840.113549.1.1.1",
+        "purl": "pkg:crypto/algorithm/rsa-2048@1.2.840.113549.1.1.1",
         "cryptoProperties": {
             "assetType": "algorithm",
             "algorithmProperties": {
-                "variant": "rsa2048",
+                "variant": "rsa-2048",
                 "implementationLevel": "softwarePlainRam",
                 "implementationPlatform": "x86_64",
                 "certificationLevel": "none",
@@ -317,12 +317,12 @@ A cryptographic protocol is added to the `components` array of the BOM. The exam
     {
         "name": "AES-256-GCM",
         "type": "crypto-asset",
-        "bom-ref": "pkg:crypto/algorithm/aes256-gcm@2.16.840.1.101.3.4.1.46",
-        "purl": "pkg:crypto/algorithm/aes256-gcm@2.16.840.1.101.3.4.1.46",
+        "bom-ref": "pkg:crypto/algorithm/aes-256-gcm@2.16.840.1.101.3.4.1.46",
+        "purl": "pkg:crypto/algorithm/aes-256-gcm@2.16.840.1.101.3.4.1.46",
         "cryptoProperties": {
             "assetType": "algorithm",
             "algorithmProperties": {
-                "variant": "aes256-gcm",
+                "variant": "aes-256-gcm",
                 "primitive": "ae",
                 "mode": "gcm",
                 "implementationLevel": "softwarePlainRam",
@@ -341,12 +341,12 @@ A cryptographic protocol is added to the `components` array of the BOM. The exam
     {
         "name": "SHA384",
         "type": "crypto-asset",
-        "bom-ref": "pkg:crypto/algorithm/sha384@2.16.840.1.101.3.4.2.9",
-        "purl": "pkg:crypto/algorithm/sha384@2.16.840.1.101.3.4.2.9",
+        "bom-ref": "pkg:crypto/algorithm/sha-384@2.16.840.1.101.3.4.2.9",
+        "purl": "pkg:crypto/algorithm/sha-384@2.16.840.1.101.3.4.2.9",
         "cryptoProperties": {
             "assetType": "algorithm",
             "algorithmProperties": {
-                "variant": "sha384",
+                "variant": "sha-384",
                 "implementationLevel": "softwarePlainRam",
                 "implementationPlatform": "x86_64",
                 "certificationLevel": "none",
@@ -409,8 +409,8 @@ A crypto algorithm is added in the `components` array of the BOM. The example be
                 "issuerName": "C = US, O = Google Trust Services LLC, CN = GTS CA 1C3",
                 "notValidBefore": "2016-11-21T08:00:00Z",
                 "notValidAfter": "2017-11-22T07:59:59Z",
-                "signatureAlgorithm": "pkg:crypto/algorithm/sha512-rsa@1.2.840.113549.1.1.13",
-                "subjectPublicKey": "pkg:crypto/key/rsa2048@1.2.840.113549.1.1.1",
+                "signatureAlgorithm": "pkg:crypto/algorithm/sha-512-rsa@1.2.840.113549.1.1.13",
+                "subjectPublicKey": "pkg:crypto/key/rsa-2048@1.2.840.113549.1.1.1",
                 "certificateFormat": "X.509",
                 "certificateExtension": "crt"
             }
@@ -419,12 +419,12 @@ A crypto algorithm is added in the `components` array of the BOM. The example be
     {
         "name": "SHA512withRSA",
         "type": "crypto-asset",
-        "bom-ref": "pkg:crypto/algorithm/sha512-rsa@1.2.840.113549.1.1.13",
-        "purl": "pkg:crypto/algorithm/sha512-rsa@1.2.840.113549.1.1.13",
+        "bom-ref": "pkg:crypto/algorithm/sha-512-rsa@1.2.840.113549.1.1.13",
+        "purl": "pkg:crypto/algorithm/sha-512-rsa@1.2.840.113549.1.1.13",
         "cryptoProperties": {
             "assetType": "algorithm",
             "algorithmProperties": {
-                "variant": "sha512-rsa",
+                "variant": "sha-512-rsa",
                 "implementationLevel": "softwarePlainRam",
                 "implementationPlatform": "x86_64",
                 "certificationLevel": "none",
@@ -439,8 +439,8 @@ A crypto algorithm is added in the `components` array of the BOM. The example be
     {
         "name": "RSA-2048",
         "type": "crypto-asset",
-        "bom-ref": "pkg:crypto/key/rsa2048@1.2.840.113549.1.1.1",
-        "purl": "pkg:crypto/key/rsa2048@1.2.840.113549.1.1.1",
+        "bom-ref": "pkg:crypto/key/rsa-2048@1.2.840.113549.1.1.1",
+        "purl": "pkg:crypto/key/rsa-2048@1.2.840.113549.1.1.1",
         "cryptoProperties": {
             "assetType": "key",
             "keyProperties": {
@@ -448,7 +448,7 @@ A crypto algorithm is added in the `components` array of the BOM. The example be
                 "id": "2e9ef09e-dfac-4526-96b4-d02f31af1b22",
                 "state": "active",
                 "size": 2048,
-                "keyAlgorithmRef": "pkg:crypto/algorithm/rsa2048@1.2.840.113549.1.1.1",
+                "keyAlgorithmRef": "pkg:crypto/algorithm/rsa-2048@1.2.840.113549.1.1.1",
                 "securedBy": {
                     "mechanism": "None"
                 },
@@ -461,12 +461,12 @@ A crypto algorithm is added in the `components` array of the BOM. The example be
     {
         "name": "RSA-2048",
         "type": "crypto-asset",
-        "bom-ref": "pkg:crypto/algorithm/rsa2048@1.2.840.113549.1.1.1",
-        "purl": "pkg:crypto/algorithm/rsa2048@1.2.840.113549.1.1.1",
+        "bom-ref": "pkg:crypto/algorithm/rsa-2048@1.2.840.113549.1.1.1",
+        "purl": "pkg:crypto/algorithm/rsa-2048@1.2.840.113549.1.1.1",
         "cryptoProperties": {
             "assetType": "algorithm",
             "algorithmProperties": {
-                "variant": "rsa2048",
+                "variant": "rsa-2048",
                 "implementationLevel": "softwarePlainRam",
                 "implementationPlatform": "x86_64",
                 "certificationLevel": "none",
@@ -495,9 +495,9 @@ The `metadata` property of CBOM is used to describe the main project component.
         "timestamp": "2022-11-30T10:22:42.812881+00:00",
         "component": {
             "type": "application",
-            "bom-ref": "cpe:2.3:a:f5:nginx:1.23.2:*:*:*:*:*:*:*",
+            "bom-ref": "pkg:github.com/nginx/nginx@release-1.25.1",
             "name": "nginx",
-            "version": "1.23.2"
+            "version": "1.25.1"
         }
     },
     "components": [
@@ -517,7 +517,7 @@ The two dependency types are:
 
 A component can have a dependencies of both types `implements` and `uses`. A crypto asset A is considered as 'used' by component C if there is a `used` dependency path from C to A.
 
-> **Note:** In classical SBOM, a component represents an external dependency to a library, application, service, etc. Since for some crypto, e.g. the relationship between a protocol and the algorithms used, this relationship is not external but internal, we decided to express this relationship differently by using specific properties to reference assets rather than using the classical dependency implementation.
+> **Note:** In classic SBOM, a component represents a library, application, service, etc. that is used as a dependency within the application. Since for some crypto, e.g. the relationship between a protocol and the algorithms used, this relationship is not external but internal, we decided to express this relationship differently by using specific properties to reference assets rather than using the classical dependency implementation.
 
 Example:
 
@@ -526,3 +526,230 @@ Example:
 The example shows an application (nginx) that uses the `libssl` cryptographic library. This library implements the `TLSv1.2` protocol. The relationship between the application, the library and the protocol can be expressed by using the `depenedencies` properties of the SBOM standard.
 
 Since a tls protocol supports different cipher suites that include multiple algorithms, there should be a way to represent these relationships as part of the CBOM. Compared to adding the algorithms as "classic" dependencies to the protocol, we defined special property fields that allow referencing the deployment with additional meaning. The protocolProperties allow adding an array of algorithms to a cipher suite as part of the cipher suite array. By modeling and then referencing these algorithms, we can still have only one classical component at the SBOM level, but a subtree of crypto dependencies within the crypto asset components.
+
+
+```json
+{
+    "bomFormat": "CBOM",
+    "specVersion": "1.5-cbom-1.1",
+    "serialNumber": "urn:uuid:63304c0b-0d43-43cb-b0a7-f75b4b7ecf98",
+    "version": 1,
+    "metadata": {
+        "timestamp": "2022-11-30T10:22:42.812881+00:00",
+        "component": {
+            "type": "application",
+            "bom-ref": "pkg:github.com/nginx/nginx@release-1.25.1",
+            "name": "nginx",
+            "version": "1.25.1"
+        }
+    },
+    "components": [
+        {
+            "type": "application",
+            "bom-ref": "pkg:github.com/nginx/nginx@release-1.25.1",
+            "name": "nginx",
+            "version": "1.25.1"
+        },
+        {
+            "type": "library",
+            "bom-ref": "pkg:github.com/openssl/openssl@3.1.2",
+            "name": "libssl",
+            "version": "3.1.2"
+        },
+        {
+            "name": "TLSv1.2",
+            "type": "crypto-asset",
+            "bom-ref": "pkg:crypto/protocol/tls@1.2",
+            "purl": "pkg:crypto/protocol/tls@1.2",
+            "cryptoProperties": {
+                "assetType": "protocol",
+                "protocolProperties": {
+                    "type": "tls",
+                    "version": "1.2",
+                    "cipherSuites": [
+                        {
+                            "name": "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384",
+                            "algorithms": [
+                                "pkg:crypto/algorithm/ecdh-curve25519@1.3.132.1.12",
+                                "pkg:crypto/algorithm/rsa-2048@1.2.840.113549.1.1.1",
+                                "pkg:crypto/algorithm/aes-128-gcm@2.16.840.1.101.3.4.1.6",
+                                "pkg:crypto/algorithm/sha-384@2.16.840.1.101.3.4.2.9"
+                            ],
+                            "identifiers": [
+                                "0xC0",
+                                "0x30"
+                            ]
+                        }
+                    ],
+                    "cryptoRefArray": [
+                        "pkg:crypto/certificate/google.com@sha256:1e15e0fbd3ce95bde5945633ae96add551341b11e5bae7bba12e98ad84a5beb4"
+                    ]
+                },
+                "oid": "1.3.18.0.2.32.104"
+            }
+        },
+        {
+            "name": "google.com",
+            "type": "crypto-asset",
+            "bom-ref": "pkg:crypto/certificate/google.com@sha256:1e15e0fbd3ce95bde5945633ae96add551341b11e5bae7bba12e98ad84a5beb4",
+            "purl": "pkg:crypto/certificate/google.com@sha256:1e15e0fbd3ce95bde5945633ae96add551341b11e5bae7bba12e98ad84a5beb4",
+            "cryptoProperties": {
+                "assetType": "certificate",
+                "certificateProperties": {
+                    "subjectName": "CN = www.google.com",
+                    "issuerName": "C = US, O = Google Trust Services LLC, CN = GTS CA 1C3",
+                    "notValidBefore": "2016-11-21T08:00:00Z",
+                    "notValidAfter": "2017-11-22T07:59:59Z",
+                    "signatureAlgorithm": "pkg:crypto/algorithm/sha512-rsa@1.2.840.113549.1.1.13",
+                    "subjectPublicKey": "pkg:crypto/key/rsa2048@1.2.840.113549.1.1.1",
+                    "certificateFormat": "X.509",
+                    "certificateExtension": "crt"
+                }
+            }
+        },
+        {
+            "name": "SHA512withRSA",
+            "type": "crypto-asset",
+            "bom-ref": "pkg:crypto/algorithm/sha-512-rsa@1.2.840.113549.1.1.13",
+            "purl": "pkg:crypto/algorithm/sha-512-rsa@1.2.840.113549.1.1.13",
+            "cryptoProperties": {
+                "assetType": "algorithm",
+                "algorithmProperties": {
+                    "variant": "sha-512-rsa",
+                    "implementationLevel": "softwarePlainRam",
+                    "implementationPlatform": "x86_64",
+                    "certificationLevel": "none",
+                    "cryptoFunctions": [
+                        "digest"
+                    ],
+                    "nistQuantumSecurityLevel": 0
+                },
+                "oid": "1.2.840.113549.1.1.13"
+            }
+        },
+        {
+            "name": "RSA-2048",
+            "type": "crypto-asset",
+            "bom-ref": "pkg:crypto/key/rsa-2048@1.2.840.113549.1.1.1",
+            "purl": "pkg:crypto/key/rsa-2048@1.2.840.113549.1.1.1",
+            "cryptoProperties": {
+                "assetType": "key",
+                "keyProperties": {
+                    "type": "publicKey",
+                    "id": "2e9ef09e-dfac-4526-96b4-d02f31af1b22",
+                    "state": "active",
+                    "size": 2048,
+                    "keyAlgorithmRef": "pkg:crypto/algorithm/rsa-2048@1.2.840.113549.1.1.1",
+                    "securedBy": {
+                        "mechanism": "Software",
+                        "algorithmRef": "pkg:crypto/algorithm/aes-128-gcm@2.16.840.1.101.3.4.1.6"
+                    },
+                    "creationDate": "2016-11-21T08:00:00Z",
+                    "activationDate": "2016-11-21T08:20:00Z",
+                },
+                "oid": "1.2.840.113549.1.1.1"
+            }
+        },
+        {
+            "name": "ECDH",
+            "type": "crypto-asset",
+            "bom-ref": "pkg:crypto/algorithm/ecdh-curve25519@1.3.132.1.12",
+            "purl": "pkg:crypto/algorithm/ecdh-curve25519@1.3.132.1.12",
+            "cryptoProperties": {
+                "assetType": "algorithm",
+                "algorithmProperties": {
+                    "variant": "ecdh-curve25519",
+                    "curve": "curve25519",
+                    "implementationLevel": "softwarePlainRam",
+                    "implementationPlatform": "x86_64",
+                    "certificationLevel": "none",
+                    "cryptoFunctions": [
+                        "keygen",
+                    ],
+                },
+                "oid": "1.3.132.1.12"
+            }
+        },
+        {
+            "name": "RSA-2048",
+            "type": "crypto-asset",
+            "bom-ref": "pkg:crypto/algorithm/rsa-2048@1.2.840.113549.1.1.1",
+            "purl": "pkg:crypto/algorithm/rsa-2048@1.2.840.113549.1.1.1",
+            "cryptoProperties": {
+                "assetType": "algorithm",
+                "algorithmProperties": {
+                    "variant": "rsa-2048",
+                    "implementationLevel": "softwarePlainRam",
+                    "implementationPlatform": "x86_64",
+                    "certificationLevel": "none",
+                    "cryptoFunctions": [
+                        "encapsulate",
+                        "decapsulate"
+                    ],
+                },
+                "oid": "1.2.840.113549.1.1.1"
+            }
+        },
+        {
+            "name": "AES-256-GCM",
+            "type": "crypto-asset",
+            "bom-ref": "pkg:crypto/algorithm/aes-256-gcm@2.16.840.1.101.3.4.1.46",
+            "purl": "pkg:crypto/algorithm/aes-256-gcm@2.16.840.1.101.3.4.1.46",
+            "cryptoProperties": {
+                "assetType": "algorithm",
+                "algorithmProperties": {
+                    "variant": "aes-256-gcm",
+                    "primitive": "ae",
+                    "mode": "gcm",
+                    "implementationLevel": "softwarePlainRam",
+                    "implementationPlatform": "x86_64",
+                    "certificationLevel": "none",
+                    "cryptoFunctions": [ 
+                        "encrypt", 
+                        "decrypt"
+                    ],
+                    "classicalSecurityLevel": 128,
+                    "nistQuantumSecurityLevel": 1
+                },
+                "oid": "2.16.840.1.101.3.4.1.46"
+            }
+        },
+        {
+            "name": "SHA384",
+            "type": "crypto-asset",
+            "bom-ref": "pkg:crypto/algorithm/sha-384@2.16.840.1.101.3.4.2.9",
+            "purl": "pkg:crypto/algorithm/sha-384@2.16.840.1.101.3.4.2.9",
+            "cryptoProperties": {
+                "assetType": "algorithm",
+                "algorithmProperties": {
+                    "variant": "sha-384",
+                    "implementationLevel": "softwarePlainRam",
+                    "implementationPlatform": "x86_64",
+                    "certificationLevel": "none",
+                    "cryptoFunctions": [
+                        "digest", 
+                    ],
+                    "nistQuantumSecurityLevel": 2
+                },
+                "oid": "2.16.840.1.101.3.4.2.9"
+            }
+        }
+    ],
+    "dependencies": [
+        {
+            "ref" : "pkg:github.com/nginx/nginx@release-1.25.1",
+            "dependsOn" : [
+                "pkg:github.com/openssl/openssl@3.1.2"
+            ],
+            "dependencyType" : "uses"
+        },
+        {
+            "ref" : "pkg:github.com/openssl/openssl@3.1.2",
+            "dependsOn" : [
+                "pkg:crypto/protocol/tls@1.2"
+            ],
+            "dependencyType" : "implements"
+        }
+    ]
+}
+```
