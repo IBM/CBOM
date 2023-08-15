@@ -55,12 +55,14 @@ A crypto algorithm is added in the `components` array of the BOM. The examples b
         "cryptoProperties": {
             "assetType": "algorithm",
             "algorithmProperties": {
+                "primitive": "signature",
                 "variant": "sha-512-rsa",
                 "implementationLevel": "softwarePlainRam",
                 "implementationPlatform": "x86_64",
                 "certificationLevel": "none",
                 "cryptoFunctions": [
-                    "digest"
+                    "sign",
+                    "verify"
                 ],
                 "nistQuantumSecurityLevel": 0
             },
@@ -525,7 +527,7 @@ Example:
 
 The example shows an application (nginx) that uses the `libssl` cryptographic library. This library implements the `TLSv1.2` protocol. The relationship between the application, the library and the protocol can be expressed by using the `depenedencies` properties of the SBOM standard.
 
-Since a tls protocol supports different cipher suites that include multiple algorithms, there should be a way to represent these relationships as part of the CBOM. Compared to adding the algorithms as "classic" dependencies to the protocol, we defined special property fields that allow referencing the deployment with additional meaning. The protocolProperties allow adding an array of algorithms to a cipher suite as part of the cipher suite array. By modeling and then referencing these algorithms, we can still have only one classical component at the SBOM level, but a subtree of crypto dependencies within the crypto asset components.
+Since a TLS protocol supports different cipher suites that include multiple algorithms, there should be a way to represent these relationships as part of the CBOM. Compared to adding the algorithms as "classic" dependencies to the protocol, we defined special property fields that allow referencing the deployment with additional meaning. The protocolProperties allow adding an array of algorithms to a cipher suite as part of the cipher suite array. By modeling and then referencing these algorithms, we can still have only one classical component at the SBOM level, but a subtree of crypto dependencies within the crypto asset components.
 
 
 ```json
@@ -571,8 +573,8 @@ Since a tls protocol supports different cipher suites that include multiple algo
                             "name": "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384",
                             "algorithms": [
                                 "pkg:crypto/algorithm/ecdh-curve25519@1.3.132.1.12",
-                                "pkg:crypto/algorithm/rsa-2048@1.2.840.113549.1.1.1",
-                                "pkg:crypto/algorithm/aes-128-gcm@2.16.840.1.101.3.4.1.6",
+                                "pkg:crypto/algorithm/sha-512-rsa@1.2.840.113549.1.1.13",
+                                "pkg:crypto/algorithm/aes-256-gcm@2.16.840.1.101.3.4.1.6",
                                 "pkg:crypto/algorithm/sha-384@2.16.840.1.101.3.4.2.9"
                             ],
                             "identifiers": [
@@ -615,12 +617,14 @@ Since a tls protocol supports different cipher suites that include multiple algo
             "cryptoProperties": {
                 "assetType": "algorithm",
                 "algorithmProperties": {
+                    "primitive": "signature",
                     "variant": "sha-512-rsa",
                     "implementationLevel": "softwarePlainRam",
                     "implementationPlatform": "x86_64",
                     "certificationLevel": "none",
                     "cryptoFunctions": [
-                        "digest"
+                        "sign",
+                        "verify"
                     ],
                     "nistQuantumSecurityLevel": 0
                 },
@@ -658,6 +662,7 @@ Since a tls protocol supports different cipher suites that include multiple algo
             "cryptoProperties": {
                 "assetType": "algorithm",
                 "algorithmProperties": {
+                    "primitive": "keyagree",
                     "variant": "ecdh-curve25519",
                     "curve": "curve25519",
                     "implementationLevel": "softwarePlainRam",
@@ -665,7 +670,10 @@ Since a tls protocol supports different cipher suites that include multiple algo
                     "certificationLevel": "none",
                     "cryptoFunctions": [
                         "keygen",
+                        "keyderive"
                     ],
+                    "classicalSecurityLevel": 128,
+                    "nistQuantumSecurityLevel": 0
                 },
                 "oid": "1.3.132.1.12"
             }
@@ -678,14 +686,17 @@ Since a tls protocol supports different cipher suites that include multiple algo
             "cryptoProperties": {
                 "assetType": "algorithm",
                 "algorithmProperties": {
-                    "variant": "rsa-2048",
+                    "primitive": "pke",
+                    "variant": "rsa-2048-oaep",
                     "implementationLevel": "softwarePlainRam",
                     "implementationPlatform": "x86_64",
                     "certificationLevel": "none",
                     "cryptoFunctions": [
-                        "encapsulate",
-                        "decapsulate"
+                        "encrypt",
+                        "decrypt"
                     ],
+                    "classicalSecurityLevel": 128,
+                    "nistQuantumSecurityLevel": 0
                 },
                 "oid": "1.2.840.113549.1.1.1"
             }
@@ -723,12 +734,14 @@ Since a tls protocol supports different cipher suites that include multiple algo
                 "assetType": "algorithm",
                 "algorithmProperties": {
                     "variant": "sha-384",
+                    "primitive": "hash",
                     "implementationLevel": "softwarePlainRam",
                     "implementationPlatform": "x86_64",
                     "certificationLevel": "none",
                     "cryptoFunctions": [
                         "digest", 
                     ],
+                    "classicalSecurityLevel": 384,
                     "nistQuantumSecurityLevel": 2
                 },
                 "oid": "2.16.840.1.101.3.4.2.9"
@@ -749,6 +762,233 @@ Since a tls protocol supports different cipher suites that include multiple algo
                 "pkg:crypto/protocol/tls@1.2"
             ],
             "dependencyType" : "implements"
+        }
+    ]
+}
+```
+
+The above example contains algorithms used by TLS 1.3 cipher suites that are not quantum-safe (nistQuantumSecurityLevel is 0). The following example illustrates the use of quantum-safe algorithms in an experimental TLS 1.3 stack (such as provided by Open Quantum Safe).
+
+```json
+{
+    "bomFormat": "CBOM",
+    "specVersion": "1.5-cbom-1.1",
+    "serialNumber": "urn:uuid:63304c0b-0d43-43cb-b0a7-f75b4b7ecf98",
+    "version": 1,
+    "metadata": {
+        "timestamp": "2022-11-30T10:22:42.812881+00:00",
+        "component": {
+            "type": "application",
+            "bom-ref": "pkg:github.com/nginx/nginx@release-1.25.1",
+            "name": "nginx",
+            "version": "1.25.1"
+        }
+    },
+    "components": [
+        {
+            "type": "application",
+            "bom-ref": "pkg:github.com/nginx/nginx@release-1.25.1",
+            "name": "nginx",
+            "version": "1.25.1"
+        },
+        {
+            "type": "library",
+            "bom-ref": "pkg:github.com/openssl/openssl@3.1.2",
+            "name": "libssl",
+            "version": "3.1.2"
+        },
+        {
+            "type": "library",
+            "bom-ref": "pkg:github.com/open-quantum-safe/oqs-provider@0.5.1",
+            "name": "oqs-provider",
+            "version": "0.5.1"
+        }
+        {
+            "name": "TLSv1.3",
+            "type": "crypto-asset",
+            "bom-ref": "pkg:crypto/protocol/tls@1.3",
+            "purl": "pkg:crypto/protocol/tls@1.3",
+            "cryptoProperties": {
+                "assetType": "protocol",
+                "protocolProperties": {
+                    "type": "tls",
+                    "version": "1.3",
+                    "cipherSuites": [
+                        {
+                            "name": "TLS_AES_256_GCM_SHA384",
+                            "algorithms": [
+                                "pkg:crypto/algorithm/kyber-1024",
+                                "pkg:crypto/algorithm/dilithium-5@1.3.6.1.4.1.2.267.7.8.7",
+                                "pkg:crypto/algorithm/aes-256-gcm@2.16.840.1.101.3.4.1.6",
+                                "pkg:crypto/algorithm/sha-384@2.16.840.1.101.3.4.2.9"
+                            ],
+                            "identifiers": [
+                                "0xC0",
+                                "0x30"
+                            ]
+                        }
+                    ],
+                    "cryptoRefArray": [
+                        "pkg:crypto/certificate/test.openquantumsafe.org:6125@sha256:61251e15e0fbd3ce95bde5945633ae96add551341b11e5bae7bba12e98ad84a5beb4"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "test.openquantumsafe.org:6125",
+            "type": "crypto-asset",
+            "bom-ref": "pkg:crypto/certificate/test.openquantumsafe.org:6125@sha256:1e15e0fbd3ce95bde5945633ae96add551341b11e5bae7bba12e98ad84a5beb4",
+            "purl": "pkg:crypto/certificate/test.openquantumsafe.org:6125@sha256:1e15e0fbd3ce95bde5945633ae96add551341b11e5bae7bba12e98ad84a5beb4",
+            "cryptoProperties": {
+                "assetType": "certificate",
+                "certificateProperties": {
+                    "subjectName": "CN = test.openquantumsafe.org",
+                    "issuerName": "C = oqstest_CA",
+                    "notValidBefore": "2023-06-23T14:58:29Z",
+                    "notValidAfter": "2023-09-11T14:58:28Z",
+                    "signatureAlgorithm": "pkg:crypto/algorithm/dilithium5@1.3.6.1.4.1.2.267.7.8.7",
+                    "subjectPublicKey": "pkg:crypto/key/dilithium5@1.3.6.1.4.1.2.267.7.8.7",
+                    "certificateFormat": "X.509",
+                    "certificateExtension": "crt"
+                }
+            }
+        },
+        {
+            "name": "dilithium5",
+            "type": "crypto-asset",
+            "bom-ref": "pkg:crypto/algorithm/dilithium-5@1.3.6.1.4.1.2.267.7.8.7",
+            "purl": "pkg:crypto/algorithm/dilithium-5@1.3.6.1.4.1.2.267.7.8.7",
+            "cryptoProperties": {
+                "assetType": "algorithm",
+                "algorithmProperties": {
+                    "primitive": "signature",
+                    "variant": "dilithium-5",
+                    "implementationLevel": "softwarePlainRam",
+                    "implementationPlatform": "x86_64",
+                    "certificationLevel": "none",
+                    "cryptoFunctions": [
+                        "sign",
+                        "verify"
+                    ],
+                    "nistQuantumSecurityLevel": 0
+                },
+                "oid": "1.3.6.1.4.1.2.267.7.8.7"
+            }
+        },
+        {
+            "name": "dilithium5",
+            "type": "crypto-asset",
+            "bom-ref": "pkg:crypto/key/dilithium-5@1.3.6.1.4.1.2.267.7.8.7",
+            "purl": "pkg:crypto/key/dilithium-5@1.3.6.1.4.1.2.267.7.8.7",
+            "cryptoProperties": {
+                "assetType": "key",
+                "keyProperties": {
+                    "type": "publicKey",
+                    "id": "2e9ef09e-dfac-4526-96b4-d02f31af1b23",
+                    "state": "active",
+                    "size": 2592,
+                    "keyAlgorithmRef": "pkg:crypto/algorithm/dilithium-5@1.3.6.1.4.1.2.267.7.8.7",
+                    "securedBy": {
+                        "mechanism": "Software",
+                        "algorithmRef": "pkg:crypto/algorithm/aes-128-gcm@2.16.840.1.101.3.4.1.6"
+                    },
+                    "creationDate": "2023-06-23T14:58:29Z",
+                    "activationDate": "2023-06-23T14:58:29Z"
+                },
+                "oid": "1.3.6.1.4.1.2.267.7.8.7"
+            }
+        },
+        {
+            "name": "kyber1024",
+            "type": "crypto-asset",
+            "bom-ref": "pkg:crypto/algorithm/kyber-1024",
+            "purl": "pkg:crypto/algorithm/kyber-1024",
+            "cryptoProperties": {
+                "assetType": "algorithm",
+                "algorithmProperties": {
+                    "primitive": "kem",
+                    "variant": "kyber-1024",
+                    "implementationLevel": "softwarePlainRam",
+                    "implementationPlatform": "x86_64",
+                    "certificationLevel": "none",
+                    "cryptoFunctions": [
+                        "keygen",
+                        "encapsulate",
+                        "decapsulate"
+                    ],
+                    "classicalSecurityLevel": 256,
+                    "nistQuantumSecurityLevel": 5
+                }
+            }
+        },
+        {
+            "name": "AES-256-GCM",
+            "type": "crypto-asset",
+            "bom-ref": "pkg:crypto/algorithm/aes-256-gcm@2.16.840.1.101.3.4.1.46",
+            "purl": "pkg:crypto/algorithm/aes-256-gcm@2.16.840.1.101.3.4.1.46",
+            "cryptoProperties": {
+                "assetType": "algorithm",
+                "algorithmProperties": {
+                    "variant": "aes-256-gcm",
+                    "primitive": "ae",
+                    "mode": "gcm",
+                    "implementationLevel": "softwarePlainRam",
+                    "implementationPlatform": "x86_64",
+                    "certificationLevel": "none",
+                    "cryptoFunctions": [ 
+                        "encrypt", 
+                        "decrypt"
+                    ],
+                    "classicalSecurityLevel": 128,
+                    "nistQuantumSecurityLevel": 1
+                },
+                "oid": "2.16.840.1.101.3.4.1.46"
+            }
+        },
+        {
+            "name": "SHA384",
+            "type": "crypto-asset",
+            "bom-ref": "pkg:crypto/algorithm/sha-384@2.16.840.1.101.3.4.2.9",
+            "purl": "pkg:crypto/algorithm/sha-384@2.16.840.1.101.3.4.2.9",
+            "cryptoProperties": {
+                "assetType": "algorithm",
+                "algorithmProperties": {
+                    "variant": "sha-384",
+                    "primitive": "hash",
+                    "implementationLevel": "softwarePlainRam",
+                    "implementationPlatform": "x86_64",
+                    "certificationLevel": "none",
+                    "cryptoFunctions": [
+                        "digest", 
+                    ],
+                    "classicalSecurityLevel": 384,
+                    "nistQuantumSecurityLevel": 2
+                },
+                "oid": "2.16.840.1.101.3.4.2.9"
+            }
+        }
+    ],
+    "dependencies": [
+        {
+            "ref" : "pkg:github.com/nginx/nginx@release-1.25.1",
+            "dependsOn" : [
+                "pkg:github.com/openssl/openssl@3.1.2"
+            ],
+            "dependencyType" : "uses"
+        },
+        {
+            "ref" : "pkg:github.com/openssl/openssl@3.1.2",
+            "dependsOn" : [
+                "pkg:crypto/protocol/tls@1.3"
+            ],
+            "dependencyType" : "implements"
+        },
+        {
+            "ref" : "pkg:github.com/openssl/openssl@3.1.2",
+            "dependsOn" : [
+                "pkg:github.com/open-quantum-safe/oqs-provider@0.5.1"
+            ],
+            "dependencyType" : "uses"
         }
     ]
 }
