@@ -649,7 +649,7 @@ Since a TLS protocol supports different cipher suites that include multiple algo
                         "algorithmRef": "pkg:crypto/algorithm/aes-128-gcm@2.16.840.1.101.3.4.1.6"
                     },
                     "creationDate": "2016-11-21T08:00:00Z",
-                    "activationDate": "2016-11-21T08:20:00Z",
+                    "activationDate": "2016-11-21T08:20:00Z"
                 },
                 "oid": "1.2.840.113549.1.1.1"
             }
@@ -739,7 +739,7 @@ Since a TLS protocol supports different cipher suites that include multiple algo
                     "implementationPlatform": "x86_64",
                     "certificationLevel": "none",
                     "cryptoFunctions": [
-                        "digest", 
+                        "digest"
                     ],
                     "classicalSecurityLevel": 384,
                     "nistQuantumSecurityLevel": 2
@@ -802,7 +802,7 @@ The above example contains algorithms used by TLS 1.3 cipher suites that are not
             "bom-ref": "pkg:github.com/open-quantum-safe/oqs-provider@0.5.1",
             "name": "oqs-provider",
             "version": "0.5.1"
-        }
+        },
         {
             "name": "TLSv1.3",
             "type": "crypto-asset",
@@ -959,7 +959,7 @@ The above example contains algorithms used by TLS 1.3 cipher suites that are not
                     "implementationPlatform": "x86_64",
                     "certificationLevel": "none",
                     "cryptoFunctions": [
-                        "digest", 
+                        "digest"
                     ],
                     "classicalSecurityLevel": 384,
                     "nistQuantumSecurityLevel": 2
