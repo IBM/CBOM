@@ -54,9 +54,9 @@
                         "title": "variant",
                         "description": "The variant for the crypto algorithm, algorithm components should be delimited with '-'",
                         "examples": [
-                            "aes-128-cbc-pkcs7",
-                            "rsa-2048-cbc-oaep-sha256-mgf1",
-                            "kyber-1024"
+                            "aes128-cbc-pkcs7",
+                            "rsa2048-cbc-oaep-sha256-mgf1",
+                            "kyber1024"
                         ]
                     },
                     "curve": {
@@ -380,11 +380,6 @@
                         "title": "Algorithm reference",
                         "description": "Bom-ref to signature algorithm used by the certificate"
                     },
-                    "subjectPublicKeyAlgorithm": {
-                        "$ref": "#/definitions/cryptoRef",
-                        "title": "Algorithm reference",
-                        "description": "Bom-ref to the algorithm used to generate the public key for the subject"
-                    },
                     "subjectPublicKey": {
                         "$ref": "#/definitions/cryptoRef",
                         "title": "Key reference",
@@ -555,15 +550,6 @@
                             "wpa",
                             "other",
                             "unknown"
-                        ]
-                    },
-                    "name": {
-                        "type": "string",
-                        "title": "protocol name",
-                        "description": "The common name of the protocol",
-                        "examples": [
-                            "TLSv1.3",
-                            "SSH-1.99"
                         ]
                     },
                     "version": {

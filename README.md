@@ -19,12 +19,18 @@ There is a need to discover, manage and report cryptography as the first step on
       - [6. Enable automatic reasoning](#6-enable-automatic-reasoning)
   - [CBOM Schema](#cbom-schema)
     - [crypto-asset](#crypto-asset)
-    - [cryptoProperties](#cryptoproperties)
+    - [Purl (package url)](#purl-package-url)
       - [Algorithm](#algorithm)
-      - [Certificate](#certificate)
       - [Key](#key)
-      - [RelatedCryptoMaterial](#relatedcryptomaterial)
+      - [Certificate](#certificate)
       - [Protocol](#protocol)
+      - [RelatedCryptoMaterial](#relatedcryptomaterial)
+    - [cryptoProperties](#cryptoproperties)
+      - [Algorithm](#algorithm-1)
+      - [Certificate](#certificate-1)
+      - [Key](#key-1)
+      - [RelatedCryptoMaterial](#relatedcryptomaterial-1)
+      - [Protocol](#protocol-1)
       - [OID](#oid)
       - [Detection Context](#detection-context)
       - [General considerations](#general-considerations)
@@ -125,6 +131,64 @@ Crypto-asset is a representation of a [component type](https://cyclonedx.org/spe
 }        
 ```
 
+
+### Purl (package url)
+
+Similar to the package url (purl) scheme for dependent libraries commonly used in SBOMs, we will provide a scheme for purls related to crypto-assets.
+
+#### Algorithm
+
+`pkg:crypto/algorithm/${variant}@${oid}`
+
+> Since not all algorithms have OIDs, it is optional the specify the OID.
+
+Examples:
+- `pkg:crypto/algorithm/kyber-512@1.3.6.1.4.1.2.267.8`
+- `pkg:crypto/algorithm/aes-128-ecb@2.16.840.1.101.3.4.1.1`
+- `pkg:crypto/algorithm/rsa-2048-sha-256@1.2.840.113549.1.1.11`
+
+#### Key
+
+`pkg:crypto/key/${variant}@${oid}`
+
+> Since not all algorithms have OIDs, it is optional the specify the OID.
+
+Examples:
+- `pkg:crypto/key/kyber-512@1.3.6.1.4.1.2.267.8`
+- `pkg:crypto/key/aes-128-ecb@2.16.840.1.101.3.4.1.1`
+- `pkg:crypto/key/rsa-2048@1.2.840.113549.1.1.1`
+
+#### Certificate
+
+`pkg:crypto/certificate/${id}@${algo:hash}`
+
+> The `id` is not defined in a fixed way. For an X509 certificate a plausible id could be the Common Name (CN). `hash`  is the hash calculated over the certificate file using a secure hash algorithm (`sha256:f323...`).
+
+Examples:
+- `pkg:crypto/certificate/google.com@sha256:1e15e0fbd3ce95bde5945633ae96add551341b11e5bae7bba12e98ad84a5beb4`
+- `pkg:crypto/certificate/wikipedia.org@sha256:0f61d4bc0a850b6df1f49eab5f64305bbca96919b295a0070d38f0f866cd43c9`
+- `pkg:crypto/certificate/ibm.com@sha512:05723518d03623c9fc785c3183f1df2030b622e3fe5b6a179af7f7001bca3fa74a7b8a5721a0d307e40af52224ccc43340d249809c94bee969354f4b441c9f16`
+
+#### Protocol
+
+`pkg:crypto/protocol/${name}@${version}`
+
+Examples: 
+- `pkg:crypto/protocol/tls@1.3`
+- `pkg:crypto/protocol/ssh@1.99`
+- `pkg:crypto/protocol/tls@1.0`
+
+#### RelatedCryptoMaterial
+
+`pkg:crypto/relatedCryptoMaterial/${type}@${algo:hash}`
+
+> The hash should be calculated using the `value` property of the related crypto material.
+
+Examples:
+- `pkg:crypto/relatedCryptoMaterial/signature@${algo:hash}`
+- `pkg:crypto/relatedCryptoMaterial/token@${algo:hash}`
+- `pkg:crypto/relatedCryptoMaterial/tag@${algo:hash}`
+
 ### cryptoProperties
 
 The `cryptoProperties` object describes the following `assetTypes`:
@@ -142,7 +206,7 @@ Describes a cryptographic algorithm. If `algorithm` is selected, the object `alg
 | Property        | Description                                                          |
 |-----------------|----------------------------------------------------------------------|
 |`primitive`      | An enum defining the cryptographic primitive (e.g. drbg, blockcipher).|
-|`variant`        | Defines the variant of an algorithm (e.g. `AES-128-GCM`, `RSA-4096`).|
+|`variant`        | Defines the variant of an algorithm. The varaint should be described as the following schema: <br><br> `${algorithm}$-{keysize}-${mode}-${padding}- ...` <br><br> Examples:<br> `aes-128-cbc-pkcs7`, `rsa-2048-cbc-oaep-sha-256-mgf1`, `kyber-1024`|
 |`curve`| If applicable, the elliptic curve of the crypto algorithm (e.g, `x25519`). |
 |`implementationLevel`| An enum defining the level of implementation for the algorithm (e.g, `softwarePlainRam`). |
 |`implementationPlatform`| An enum defining the platform where the algorithm is implemented (e.g. `x86_64`).
@@ -166,7 +230,6 @@ Describes a cryptographic certificate. If `certificate` is selected, the object 
 |`notValidBefore`| _Not valid before_ property of a certificate.|
 |`notValidAfter`| _Not valid after property_ of a certificate.|
 |`signatureAlgorithm`| _Signature Algorithm_ of a certificate. Algorithm used by the subject to sign the certificate (`bom-ref` to algorithm component). |
-|`subjectPublicKeyAlgorithm`| Algorithm used to generate the public key of a certificate (`bom-ref` to algorithm component). |
 |`subjectPublicKey`| Public key of a certificate (`bom-ref` to key component).|
 |`certificateFormat`| Certificate format, e.g. `X.509`, `PEM`, `DER`, `CVC`. |
 |`certificateExtension`| File extensions of a certificate (e.g. `pem`, `cer`). |
@@ -181,7 +244,7 @@ Describes a cryptographic key. If `key` is selected, the object `keyProperties` 
 |`id`| An identifier for the key. |
 |`state`| The key state according to NIST SP 800-57 (e.g. `active`, `suspended`, `destroyed`).|
 |`size`|Key size in bits.|
-|`algorithmRef`| Algorithm used to generate the key (`bom-ref` to algorithm component).|
+|`keyAlgorithmRef`| Algorithm used to generate the key (`bom-ref` to algorithm component).|
 |`securedBy`| Specifies the mechanism by which the key is secured by, if applicable. |
 |`creationDate`| The date and time (timestamp) when the key was created. |
 |`activationDate`| The date and time (timestamp) when the key was activated. |
@@ -208,10 +271,10 @@ Describes cryptographic protocols. If `protocol` is selected, the object `protoc
 | Property        | Description                                                          |
 |-----------------|----------------------------------------------------------------------|
 |`type` | An enum defining the type of a protocol (e.g. `tls`, `ssh`, `ipsec`). |
-|`name` | Common name of the protocol (e.g. `TLSv1.3`, `SSH-1.99`). |
 |`version`| The version of the protocol (e.g. `1.0`, `1.3`)|
 |`cipherSuites`| Defines a list of cipher suites supported by a protocol. |
 |`ikev2TransformTypes`| For IPsec protocols - defines the IKEv2 transform types supported by the IPsec instantiation. This property is defined in an array containing references to other crypto assets for (1) encryption algorithms, (2) pseudorandom functions, (3) integrity algorithms, (4) DH groups, and (5) Extended Sequence Number used. |
+|`cryptoRefArray`| A list (bom-ref) of protocol-related cryptographic assets. |
 
 #### OID
 
