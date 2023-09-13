@@ -585,7 +585,7 @@
                     "ikev2TransformTypes": {
                         "type": "object",
                         "title": "IKEv2 transform types supported",
-                        "description": "the IKEv2 transform types supported (types 1-4), according to RFC5996, section 3.3.2",
+                        "description": "the IKEv2 transform types supported (types 1-4), according to RFC7296 section 3.3.2, and additional properties",
                         "properties": {
                             "encr": {
                                 "$ref": "#/definitions/cryptoRefArray",
@@ -599,13 +599,17 @@
                                 "$ref": "#/definitions/cryptoRefArray",
                                 "title": "Transform Type 3: integrity algorithms"
                             },
-                            "dh": {
+                            "ke": {
                                 "$ref": "#/definitions/cryptoRefArray",
-                                "title": "Transform Type 4: DH groups"
+                                "title": "Key Exchange Method (KE) by RFC9370, formerly called dh"
                             },
                             "esn": {
                                 "type": "boolean",
                                 "title": "Extended Sequence Number is used"
+                            },
+                            "auth": {
+                                "$ref": "#/definitions/cryptoRefArray",
+                                "title": "IKEv2 Authentication method"
                             }
                         }
                     },
