@@ -17,7 +17,6 @@
                 "enum": [
                     "algorithm",
                     "certificate",
-                    "key",
                     "protocol",
                     "relatedCryptoMaterial"
                 ]
@@ -420,20 +419,35 @@
                     }
                 }
             },
-            "keyProperties": {
+            "relatedCryptoMaterialProperties": {
                 "type": "object",
-                "title": "Properties for Keys",
-                "description": "Properties for crypto assets of asset type 'key'",
+                "title": "related crypto material properties",
+                "description": "Properties for crypto assets of asset type 'relatedCryptoMaterial'",
                 "additionalProperties": false,
                 "properties": {
                     "type": {
                         "type": "string",
-                        "title": "key type",
-                        "description": "The type of the key",
+                        "title": "relatedCryptoMaterialType",
+                        "description": "The type for the related crypto material",
                         "enum": [
                             "privateKey",
                             "publicKey",
-                            "secretKey"
+                            "secretKey",
+                            "ciphertext",
+                            "signature",
+                            "digest",
+                            "initializationVector",
+                            "nonce",
+                            "seed",
+                            "salt",
+                            "sharedSecret",
+                            "tag",
+                            "additionalData",
+                            "password",
+                            "credential",
+                            "token",
+                            "other",
+                            "unknown"
                         ]
                     },
                     "id": {
@@ -454,72 +468,34 @@
                             "destroyed"
                         ]
                     },
-                    "size": {
-                        "$ref": "#/definitions/size",
-                        "title": "Crypto asset size (in bits)"
-                    },
-                    "keyAlgorithmRef": {
+                    "algorithmRef": {
                         "$ref": "#/definitions/cryptoRef",
                         "title": "Algorithm reference",
-                        "description": "Bom-ref to algorithm used to generate the key"
-                    },
-                    "securedBy": {
-                        "$ref": "#/definitions/securedBy",
-                        "title": "Crypto asset is secured by"
+                        "description": "Bom-ref to algorithm used to generate the relatedCryptoMaterial"
                     },
                     "creationDate": {
                         "type": "string",
                         "format": "date-time",
                         "title": "creation date",
-                        "description": "The date and time (timestamp) when the key was created."
+                        "description": "The date and time (timestamp) when the relatedCryptoMaterial was created."
                     },
                     "activationDate": {
                         "type": "string",
                         "format": "date-time",
                         "title": "activation date",
-                        "description": "The date and time (timestamp) when the key was activated."
+                        "description": "The date and time (timestamp) when the relatedCryptoMaterial was activated."
                     },
                     "updateDate": {
                         "type": "string",
                         "format": "date-time",
                         "title": "update date",
-                        "description": "The date and time (timestamp) when the key was updated."
+                        "description": "The date and time (timestamp) when the relatedCryptoMaterial was updated."
                     },
                     "expirationDate": {
                         "type": "string",
                         "format": "date-time",
                         "title": "expiration date",
-                        "description": "The date and time (timestamp) when the key expired."
-                    }
-                }
-            },
-            "relatedCryptoMaterialProperties": {
-                "type": "object",
-                "title": "related crypto material properties",
-                "description": "Properties for crypto assets of asset type 'relatedCryptoMaterial'",
-                "additionalProperties": false,
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "title": "relatedCryptoMaterialType",
-                        "description": "The type for the related crypto material",
-                        "enum": [
-                            "ciphertext",
-                            "signature",
-                            "digest",
-                            "initializationVector",
-                            "nonce",
-                            "seed",
-                            "salt",
-                            "sharedSecret",
-                            "tag",
-                            "additionalData",
-                            "password",
-                            "credential",
-                            "token",
-                            "other",
-                            "unknown"
-                        ]
+                        "description": "The date and time (timestamp) when the relatedCryptoMaterial expired."
                     },
                     "value": {
                         "type": "string",

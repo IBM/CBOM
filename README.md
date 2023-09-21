@@ -23,7 +23,6 @@ There is a need to discover, manage and report cryptography as the first step on
       - [Algorithm](#algorithm)
       - [Key](#key)
       - [Certificate](#certificate)
-      - [Protocol](#protocol)
       - [RelatedCryptoMaterial](#relatedcryptomaterial)
     - [cryptoProperties](#cryptoproperties)
       - [Algorithm](#algorithm-1)
@@ -194,7 +193,6 @@ Examples:
 The `cryptoProperties` object describes the following `assetTypes`:
 
 - `algorithm`
-- `key`
 - `certificate`
 - `protocol`
 - `relatedCryptoMaterial`
@@ -234,35 +232,25 @@ Describes a cryptographic certificate. If `certificate` is selected, the object 
 |`certificateFormat`| Certificate format, e.g. `X.509`, `PEM`, `DER`, `CVC`. |
 |`certificateExtension`| File extensions of a certificate (e.g. `pem`, `cer`). |
 
-#### Key
-
-Describes a cryptographic key. If `key` is selected, the object `keyProperties` shall be used to define further properties:
-
-| Property        | Description                                                          |
-|-----------------|----------------------------------------------------------------------|
-|`type`| An enum defining the type of key (e.g. `privateKey`, `publicKey`, `secretKey`). |
-|`id`| An identifier for the key. |
-|`state`| The key state according to NIST SP 800-57 (e.g. `active`, `suspended`, `destroyed`).|
-|`size`|Key size in bits.|
-|`keyAlgorithmRef`| Algorithm used to generate the key (`bom-ref` to algorithm component).|
-|`securedBy`| Specifies the mechanism by which the key is secured by, if applicable. |
-|`creationDate`| The date and time (timestamp) when the key was created. |
-|`activationDate`| The date and time (timestamp) when the key was activated. |
-|`updateDate`| The date and time (timestamp) when the key was updated. |
-|`expirationDate`| The date and time (timestamp) when the key expired. |
-
-
 #### RelatedCryptoMaterial
 
 Describes related cryptographic material. The `relatedCryptoMaterial` assetType corresponds to cryptographic material inventoried in the CBOM. If `relatedCryptoMaterial` is selected, the object `relatedCryptoMaterialProperties` shall be used to define further properties:
 
 | Property        | Description                                                          |
 |-----------------|----------------------------------------------------------------------|
-|`type`| An enum defining the type of cryptographic material (e.g. `signature`, `tag`, `token`).|
+|`type`| An enum defining the type of cryptographic material (e.g. `privateKey`, `publicKey`, `secretKey`, `signature`, `tag`, `token`).|
 |`value`| The assosiated value of the crypto material. |
 |`size`| Size in bits of the related crypto material.|
 |`format`| Format of the related crypto material (e.g. `P8`, `PEM`, `DER`).|
 |`securedBy`| Specifies the mechanism by which the crypto material is secured by, if applicable.|
+|`id`| An identifier for the crypto material. |
+|`state`| The key state according to NIST SP 800-57 (e.g. `active`, `suspended`, `destroyed`).|
+|`algorithmRef`| Algorithm used to generate the crypto material (`bom-ref` to algorithm component).|
+|`securedBy`| Specifies the mechanism by which the crypto material is secured by, if applicable. |
+|`creationDate`| The date and time (timestamp) when the crypto material was created, if applicable. |
+|`activationDate`| The date and time (timestamp) when the crypto material was activated, if applicable. |
+|`updateDate`| The date and time (timestamp) when the crypto material was updated, if applicable. |
+|`expirationDate`| The date and time (timestamp) when the crypto material expired, if applicable. |
 
 #### Protocol
 
