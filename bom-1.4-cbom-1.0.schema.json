@@ -863,7 +863,9 @@
                       "FourQ",
                       "Tom-256",
                       "Tom-384",
-                      "Tom-521"
+                      "Tom-521",
+                      "other",
+                      "unknown"
                     ]
                   },
                 "cryptoFunctions": {
