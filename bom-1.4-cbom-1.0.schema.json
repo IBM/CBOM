@@ -515,6 +515,7 @@
                     "keyagree",
                     "kem",
                     "ae",
+                    "padding",
                     "other",
                     "unknown"
                   ]
