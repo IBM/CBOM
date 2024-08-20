@@ -4,6 +4,8 @@
 
 CBOM based on this repository has been integrated and upstreamed to the CycloneDX 1.6 [specification](https://github.com/CycloneDX/specification/releases/tag/1.6). We thank the CycloneDX community for working with us integrating our CBOM specification. We recommend users to refer to the upstream specifciation of CycloneDX and the [CycloneDX CBOM guide](https://cyclonedx.org/guides/OWASP_CycloneDX-Authoritative-Guide-to-CBOM-en.pdf).
 
+Tooling developed at IBM Research related to CBOM is available [here](https://www.zurich.ibm.com/cbom/). The [CycloneDX Tool Center](https://cyclonedx.org/tool-center/) lists more tooling related to the CycloneDX SBOM standard. 
+
 ## Introduction
 
 Cryptography Bill of Materials (CBOM) is an object model to describe cryptographic assets (short crypto-assets) and their dependencies.
