@@ -4,7 +4,12 @@
 
 CBOM based on this repository has been integrated and upstreamed to the CycloneDX 1.6 [specification](https://github.com/CycloneDX/specification/releases/tag/1.6). We thank the CycloneDX community for working with us integrating our CBOM specification. We recommend users to refer to the upstream specifciation of CycloneDX and the [CycloneDX CBOM guide](https://cyclonedx.org/guides/OWASP_CycloneDX-Authoritative-Guide-to-CBOM-en.pdf).
 
-Tooling developed at IBM Research related to CBOM is available [here](https://www.zurich.ibm.com/cbom/). The [CycloneDX Tool Center](https://cyclonedx.org/tool-center/) lists more tooling related to the CycloneDX SBOM standard. 
+Open-source tooling developed at IBM Research related to CBOM is available here:
+ - [Sonar Cryptography Plugin (CBOMkit-hyperion)](https://github.com/IBM/sonar-cryptography): A SonarQube Plugin that detects cryptographic assets in source code and generates CBOM.
+ - [CBOM Viewer (CBOMkit-coeus)](https://www.zurich.ibm.com/cbom/): Visualize a generated or uploaded CBOM and access comprehensive statistics.
+ - [CBOMkit-theia](https://github.com/IBM/cbomkit-theia): A tool for detecting cryptographic assets in container images and directories, and generating CBOMs.
+
+The [CycloneDX Tool Center](https://cyclonedx.org/tool-center/) lists more tooling related to the CycloneDX SBOM standard.
 
 ## Introduction
 
@@ -42,7 +47,7 @@ There is a need to discover, manage and report cryptography as the first step on
 
 A Software Bill of Materials (SBOM) is a list of all the individual components that make up a piece of software and how its delivered. This can include not only the source code for the software, but also any libraries, frameworks, and other third-party components that are used in the software. An SBOM is based on a bill of materials (BOM) used in manufacturing, which lists all the components that are used to build a physical product.
 An SBOM typically includes a set of metadata that detail licensing information, identification and version numbers together with the component details.
-One of the main functions of SBOMs in a security context is to simplify the management of security events and automate remediation actions through adding sufficient context to an event. The benefits of standards based SBOM’s include: 
+One of the main functions of SBOMs in a security context is to simplify the management of security events and automate remediation actions through adding sufficient context to an event. The benefits of standards based SBOM’s include:
 
 - Facilitating the exchange of component composition in an industry.
 - Visibility of components and dependencies in an application or system.
@@ -99,7 +104,7 @@ CBOM extends the CycloneDX standard (version 1.4) with the following properties 
 
 ### crypto-asset
 
-Crypto-asset is a representation of a [component type](https://cyclonedx.org/specification/overview/#components). The type and the name are required component properties. 
+Crypto-asset is a representation of a [component type](https://cyclonedx.org/specification/overview/#components). The type and the name are required component properties.
 
 ```
 "component": {
@@ -124,7 +129,7 @@ Crypto-asset is a representation of a [component type](https://cyclonedx.org/spe
             "file",
             "crypto-asset"
           ],
-...          
+...
 ```
 
 ### cryptoProperties
