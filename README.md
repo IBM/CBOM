@@ -5,6 +5,7 @@
 CBOM based on this repository has been integrated and upstreamed to the CycloneDX 1.6 [specification](https://github.com/CycloneDX/specification/releases/tag/1.6). We thank the CycloneDX community for working with us integrating our CBOM specification. We recommend users to refer to the upstream specifciation of CycloneDX and the [CycloneDX CBOM guide](https://cyclonedx.org/guides/OWASP_CycloneDX-Authoritative-Guide-to-CBOM-en.pdf).
 
 Open-source tooling developed at IBM Research related to CBOM is available here:
+ - [CBOMkit](https://github.com/IBM/cbomkit): A toolset for dealing with Cryptography Bill of Materials (CBOM). 
  - [Sonar Cryptography Plugin (CBOMkit-hyperion)](https://github.com/IBM/sonar-cryptography): A SonarQube Plugin that detects cryptographic assets in source code and generates CBOM.
  - [CBOM Viewer (CBOMkit-coeus)](https://www.zurich.ibm.com/cbom/): Visualize a generated or uploaded CBOM and access comprehensive statistics.
  - [CBOMkit-theia](https://github.com/IBM/cbomkit-theia): A tool for detecting cryptographic assets in container images and directories, and generating CBOMs.
