@@ -9,6 +9,7 @@ Open-source tooling developed at IBM Research related to CBOM is available here:
  - [Sonar Cryptography Plugin (CBOMkit-hyperion)](https://github.com/IBM/sonar-cryptography): A SonarQube Plugin that detects cryptographic assets in source code and generates CBOM.
  - [CBOM Viewer (CBOMkit-coeus)](https://www.zurich.ibm.com/cbom/): Visualize a generated or uploaded CBOM and access comprehensive statistics.
  - [CBOMkit-theia](https://github.com/IBM/cbomkit-theia): A tool for detecting cryptographic assets in container images and directories, and generating CBOMs.
+ - [CBOMkit-action](https://github.com/PQCA/cbomkit-action): A GitHub action to generate CBOMs.
 
 The [CycloneDX Tool Center](https://cyclonedx.org/tool-center/) lists more tooling related to the CycloneDX SBOM standard.
 
